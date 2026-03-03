@@ -7,9 +7,7 @@
   gap: 3rem 0;
 
   @include mixins.mq-up(large) {
-    max-inline-size: 75%;
-    margin-block: 0;
-    margin-inline: auto;
+    max-inline-size: 100%;
   }
 
   &-field {
@@ -37,17 +35,18 @@
     &--text,
     &--textarea {
       background: none;
-      border-block-end: 2px solid variables.$c-black;
+      border-block-end: 1px solid var(--c-input-border);
       border-block-start: none;
       border-inline-end: none;
       border-inline-start: none;
       border-radius: 0;
-      color: variables.$c-black;
-      font-size: 1.5rem;
+      color: var(--c-input-text);
+      font-size: 1.25rem;
       inline-size: 100%;
       outline: none;
       padding-block: 1rem;
       padding-inline: 0;
+      transition: border-color variables.$s-fast;
 
       &::placeholder {
         color: transparent;
@@ -55,26 +54,28 @@
 
       &:focus-visible,
       &:not(:placeholder-shown) {
+        border-block-end-color: var(--c-accent);
+
         & ~ .form-line {
           inline-size: 100%;
         }
 
         & ~ .form-label {
-          font-size: 1.2rem;
+          color: var(--c-accent);
+          font-size: 1rem;
           inset-block-start: -1rem;
         }
       }
 
-      // Styling for invalid state
       &[aria-invalid='true'] {
-        border-block-end-color: variables.$c-red;
+        border-block-end-color: var(--c-error);
 
         & ~ .form-label {
-          color: variables.$c-red;
+          color: var(--c-error);
         }
 
         & ~ .form-line {
-          background: variables.$c-red;
+          background: var(--c-error);
           inline-size: 100%;
         }
       }
@@ -90,13 +91,14 @@
     &--button {
       align-self: flex-start;
 
-      @include mixins.button($bg: variables.$c-blue, $fg: variables.$c-white);
+      @include mixins.button($bg: variables.$c-teal, $fg: variables.$c-navy-900);
     }
   }
 
   &-line {
-    background: variables.$c-black;
-    block-size: 4px;
+    background: var(--c-form-line);
+    block-size: 2px;
+    border-radius: 1px;
     inset-block-end: 0;
     inline-size: 0;
     position: absolute;
@@ -104,23 +106,25 @@
   }
 
   &-label {
-    font-size: 1.5rem;
+    color: var(--c-label-text);
+    font-size: 1.25rem;
     inset-block-start: 1rem;
     position: absolute;
     transition:
+      color variables.$s-fast,
       font-size variables.$s-base,
       inset-block-start variables.$s-base;
   }
 
   &-required {
-    color: variables.$c-red;
+    color: var(--c-error);
   }
 
   &-error {
-    color: variables.$c-red;
+    color: var(--c-error);
     display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: variables.$fs-sm;
+    font-weight: variables.$fw-medium;
     inset-block-end: -1.5rem;
     line-height: 1.4;
     min-height: 1.4em;

@@ -7,74 +7,133 @@ $bp-medium: 768px;
 $bp-large: 1024px;
 $bp-extra-large: 1300px;
 
-// Colors - WCAG AAA Compliant
-// Primary colors with improved contrast
+// ============================================================
+// DESIGN TOKENS — Dark/Light Theme System
+// CSS custom properties handle the theming; SCSS variables
+// are compile-time constants that seed the :root defaults.
+// ============================================================
+
+// Dark theme palette (compile-time constants)
+$c-navy-900: #0b1622;
+$c-navy-800: #132035;
+$c-navy-700: #1c2f4a;
+$c-teal: #5ef0c8;
+$c-teal-dim: #2ead8a;
+$c-text-bright: #e8f1ff;
+$c-text-base: #c5d0e8;
+$c-text-muted: #7a8ba8;
+
+// Light theme palette (compile-time constants)
+$c-lt-bg-primary: #f6f8fc;
+$c-lt-bg-secondary: #edf0f7;
+$c-lt-bg-tertiary: #e0e6f0;
+$c-lt-accent: #0a7a5c;
+$c-lt-accent-hover: #087a5a;
+$c-lt-text-primary: #0d1b2e;
+$c-lt-text-secondary: #2b3d52;
+$c-lt-text-muted: #5c7190;
+
+// Semantic aliases (used in SCSS files that don't need theming)
+$c-error-dark: #ff6b6b; // error on dark bg (AAA on navy)
+$c-error-light: #c0392b; // error on light bg
+
+// ============================================================
+// Legacy aliases — referenced by _mixins.scss and components
+// not yet migrated to CSS custom properties. Remove after Phase 2.
+// ============================================================
 $c-white: #fff;
-$c-off-white: #f5f5f5;
 $c-black: #1a1a1a;
 $c-black-50: rgba($c-black, 0.5);
-$c-black-75: rgba($c-black, 0.75);
+$c-off-white: #f5f5f5;
+$c-dark-blue: $c-navy-800;   // maps to new navy
+$c-orange: $c-teal;        // placeholder — components will be rewritten in Phase 2
+$c-muted: $c-text-muted;  // maps to new muted text token
+$c-muted-2: $c-text-muted;
+$c-red: $c-error-dark;
 
-// Semantic colors (primary/secondary)
-$c-blue: #003da5; // Dark blue for better contrast
-$c-blue-75: rgba($c-blue, 0.75);
-$c-dark-blue: #003d7a; // Darker for WCAG compliance
-$c-light-blue: #d4f0ff; // Lighter for backgrounds
+// CSS Custom Properties — runtime theme values
+:root {
+  --c-bg-primary:   #{$c-navy-900};
+  --c-bg-secondary: #{$c-navy-800};
+  --c-bg-tertiary:  #{$c-navy-700};
+  --c-accent:       #{$c-teal};
+  --c-accent-hover: #{$c-teal-dim};
+  --c-text-bright:  #{$c-text-bright};
+  --c-text-base:    #{$c-text-base};
+  --c-text-muted:   #{$c-text-muted};
+  --c-border:       rgb(94 240 200 / 15%);
+  --c-error:        #{$c-error-dark};
 
-// Accent colors
-$c-red: #c00; // Darker red for compliance
-$c-orange: #c60; // Darker orange for compliance
-$c-yellow: #ca0; // Darker, more saturated yellow
-$c-green: #2d8c2a; // Darker, more accessible green
+  // Form-specific tokens (bg-primary won't work for the transparent input border on dark)
+  --c-input-border: #{$c-text-muted};
+  --c-input-text:   #{$c-text-base};
+  --c-label-text:   #{$c-text-base};
+  --c-form-line:    #{$c-teal};
+}
 
-// Neutral grays and borders (WCAG compliant)
-$c-bg-light: #f8f8f8;
-$c-muted: #4a4a4a; // Darker for better contrast
-$c-muted-2: #707070; // Mid-gray
-$c-border: #d9d9d9; // Slightly darker border
+[data-theme='light'] {
+  --c-bg-primary:   #{$c-lt-bg-primary};
+  --c-bg-secondary: #{$c-lt-bg-secondary};
+  --c-bg-tertiary:  #{$c-lt-bg-tertiary};
+  --c-accent:       #{$c-lt-accent};
+  --c-accent-hover: #{$c-lt-accent-hover};
+  --c-text-bright:  #{$c-lt-text-primary};
+  --c-text-base:    #{$c-lt-text-secondary};
+  --c-text-muted:   #{$c-lt-text-muted};
+  --c-border:       rgb(10 122 92 / 20%);
+  --c-error:        #{$c-error-light};
+  --c-input-border: #{$c-lt-text-secondary};
+  --c-input-text:   #{$c-lt-text-primary};
+  --c-label-text:   #{$c-lt-text-secondary};
+  --c-form-line:    #{$c-lt-accent};
+}
 
-// Gradients with opacity variables
-$grad-blue-light-start: rgba($c-blue, 0.08);
-$grad-blue-light-end: rgba($c-dark-blue, 0.08);
-$grad-orange-light-start: rgba($c-orange, 0.08);
-$grad-orange-light-end: rgba($c-blue, 0.08);
-
-// Fonts
-$ff-body: 'Lato', sans-serif;
-$ff-heading: 'Raleway', sans-serif;
+// ============================================================
+// Typography
+// ============================================================
+$ff-body: 'Inter', system-ui, -apple-system, sans-serif;
+$ff-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+$ff-mono: 'Courier New', Courier, monospace;
 
 // Font Weights
 $fw-normal: 400;
 $fw-medium: 500;
 $fw-bold: 700;
+$fw-extra-bold: 800;
 
 // Typography Scale
-$fs-xs: 0.75rem; // 12px
+$fs-xs: 0.75rem;  // 12px
 $fs-sm: 0.875rem; // 14px
-$fs-base: 1rem; // 16px
+$fs-base: 1rem;    // 16px
 $fs-lg: 1.125rem; // 18px
-$fs-xl: 1.25rem; // 20px
-$fs-2xl: 1.5rem; // 24px
-$fs-3xl: 2rem; // 32px
-$fs-4xl: 2.5rem; // 40px
-$fs-5xl: 3.5rem; // 56px
+$fs-xl: 1.25rem;  // 20px
+$fs-2xl: 1.5rem;   // 24px
+$fs-3xl: 2rem;     // 32px
+$fs-4xl: 2.5rem;   // 40px
+$fs-5xl: 3.5rem;   // 56px
+$fs-6xl: 5rem;     // 80px — hero headline (large screens)
 
-// Line Heights (consistent unitless values)
+// Line Heights
 $lh-tight: 1.2;
 $lh-snug: 1.375;
 $lh-normal: 1.5;
 $lh-relaxed: 1.625;
 $lh-loose: 1.75;
 
-// Shadows
-$shadow-sm: 0 1px 2px rgba($c-black, 0.05);
-$shadow-base: 0 1px 3px rgba($c-black, 0.1);
-$shadow-md: 0 4px 6px rgba($c-black, 0.1);
-$shadow-lg: 0 10px 15px rgba($c-black, 0.1);
-$shadow-xl: 0 20px 25px rgba($c-black, 0.1);
-$shadow-hover: 0 12px 20px rgba($c-black, 0.15);
+// ============================================================
+// Shadows (adjusted for dark backgrounds)
+// ============================================================
+$shadow-sm: 0 1px 2px rgb(0 0 0 / 30%);
+$shadow-base: 0 1px 3px rgb(0 0 0 / 40%);
+$shadow-md: 0 4px 6px rgb(0 0 0 / 40%);
+$shadow-lg: 0 10px 15px rgb(0 0 0 / 40%);
+$shadow-xl: 0 20px 25px rgb(0 0 0 / 40%);
+$shadow-hover: 0 12px 28px rgb(0 0 0 / 50%);
+$shadow-teal: 0 8px 24px rgb(94 240 200 / 12%);
 
+// ============================================================
 // Spacing Scale
+// ============================================================
 $space-xs: 0.25rem;
 $space-sm: 0.5rem;
 $space-base: 1rem;
@@ -89,6 +148,7 @@ $z-0: 0;
 $z-1: 1;
 $z-2: 2;
 $z-10: 10;
+$z-100: 100; // cursor follower
 
 // Speeds
 $s-fast: 0.15s;

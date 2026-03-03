@@ -2,137 +2,158 @@
 @use 'mixins';
 
 .section {
+  overflow-inline: hidden;
   padding-block: variables.$space-3xl;
   padding-inline: 0;
-  overflow-inline: hidden;
 
   &__intro {
-    font-size: variables.$fs-2xl;
+    color: var(--c-text-base);
+    font-size: variables.$fs-xl;
     line-height: variables.$lh-relaxed;
     margin-block: 0 variables.$space-3xl;
     margin-inline: 0;
+    max-inline-size: 70ch;
 
     @include mixins.mq-up(large) {
       margin-block-end: 0;
     }
   }
 
+  // Section title accent — teal left-border line before heading wrapper
   &__title-wrapper {
-    .section--about & {
-      @include mixins.text-color-split(
-        $color1: variables.$c-white,
-        $color2: variables.$c-dark-blue
-      );
-    }
+    border-inline-start: 4px solid var(--c-accent);
+    margin-block-end: variables.$space-2xl;
+    padding-inline-start: variables.$space-lg;
 
-    .section--experience & {
-      @include mixins.text-color-split($color2: variables.$c-yellow);
-    }
-
-    .section--skills & {
-      @include mixins.text-color-split($color2: variables.$c-orange);
-    }
-
-    .section--projects & {
-      @include mixins.text-color-split($color2: variables.$c-light-blue);
-    }
-
-    .section--contact & {
-      @include mixins.text-color-split($color2: variables.$c-yellow);
-    }
-
-    .section--links & {
-      @include mixins.text-color-split($color2: variables.$c-green);
+    .section--hero & {
+      border: none;
+      padding-inline-start: 0;
     }
   }
 
   &__highlight {
-    background: variables.$c-orange;
-    color: variables.$c-black;
-    padding-block: 0;
-    padding-inline: 0.3rem;
+    color: var(--c-accent);
+    font-weight: variables.$fw-bold;
   }
 
+  // About section: headshot with teal ring
   &__image {
-    img {
-      animation: morph infinite 15s 1s;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    position: relative;
+
+    &::before {
+      animation: ring-pulse 3s ease-in-out infinite;
+      border: 2px dashed var(--c-accent);
       border-radius: 50%;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      content: '';
+      inset: -12px;
+      opacity: 0.5;
+      position: absolute;
     }
 
-    @keyframes morph {
+    img {
+      border-radius: 50%;
+    }
+
+    @keyframes ring-pulse {
       0%,
       100% {
-        border-radius: 50%;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        opacity: 0.5;
+        transform: scale(1);
       }
 
       50% {
-        border-radius: 0;
-        clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
+        opacity: 0.8;
+        transform: scale(1.02);
       }
     }
   }
 
+  // ============================================================
+  // Section variants
+  // ============================================================
+
   &--hero {
-    background: variables.$c-light-blue;
+    background: var(--c-bg-primary);
+    min-block-size: 100dvh;
+    padding-block: 0;
+    position: relative;
+
+    // Animated radial gradient in bg (original, not a copy of any specific portfolio)
+    &::before {
+      animation: hero-glow 8s ease-in-out infinite alternate;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 60%, rgb(94 240 200 / 6%) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 30%, rgb(28 47 74 / 80%) 0%, transparent 60%);
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+      will-change: opacity;
+      z-index: variables.$z-0;
+    }
+
+    @keyframes hero-glow {
+      from { opacity: 0.7; }
+      to   { opacity: 1; }
+    }
 
     .hero {
-      &__content {
-        padding-block: 3rem 0;
-        padding-inline: 0;
-        text-align: center;
+      align-items: center;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      min-block-size: 100dvh;
+      padding-block: 8rem variables.$space-3xl;
+      position: relative;
+      text-align: center;
+      z-index: variables.$z-1;
 
-        @include mixins.mq-up(large) {
-          margin-block: 0;
-          margin-inline: auto;
-          max-inline-size: 75%;
-        }
+      @include mixins.mq-up(large) {
+        padding-block: 10rem variables.$space-3xl;
+      }
+
+      &__eyebrow {
+        color: var(--c-accent);
+        font-family: variables.$ff-mono;
+        font-size: variables.$fs-base;
+        letter-spacing: 0.15em;
+        margin-block: 0 variables.$space-lg;
+        margin-inline: 0;
+        text-transform: uppercase;
       }
 
       &__title {
-        color: variables.$c-black;
+        color: var(--c-text-bright);
         font-size: variables.$fs-5xl;
-        font-weight: variables.$fw-bold;
+        font-weight: variables.$fw-extra-bold;
         line-height: variables.$lh-tight;
-        margin-block: variables.$space-xl variables.$space-lg;
+        margin-block: 0 variables.$space-xl;
         margin-inline: 0;
+        overflow: hidden;
+
+        @include mixins.mq-up(large) {
+          font-size: variables.$fs-6xl;
+        }
 
         @include mixins.mq-down(medium) {
           font-size: variables.$fs-4xl;
         }
       }
 
-      &__highlight {
-        color: variables.$c-orange;
-        display: block;
-        margin-block: 0.5rem 0;
-        margin-inline: 0;
-      }
-
       &__subtitle {
-        color: variables.$c-dark-blue;
-        font-size: variables.$fs-2xl;
-        font-weight: variables.$fw-medium;
-        line-height: variables.$lh-normal;
-        margin-block: variables.$space-lg variables.$space-base;
-        margin-inline: 0;
+        color: var(--c-text-base);
+        font-size: variables.$fs-xl;
+        font-weight: variables.$fw-normal;
+        line-height: variables.$lh-relaxed;
+        margin-block: 0 variables.$space-2xl;
+        margin-inline: auto;
+        max-inline-size: 55ch;
 
         @include mixins.mq-down(medium) {
-          font-size: variables.$fs-xl;
-        }
-      }
-
-      &__description {
-        color: variables.$c-muted;
-        font-size: variables.$fs-lg;
-        line-height: variables.$lh-relaxed;
-        margin-block: variables.$space-lg variables.$space-2xl;
-        margin-inline: 0;
-
-        strong {
-          color: variables.$c-dark-blue;
-          font-weight: variables.$fw-bold;
+          font-size: variables.$fs-lg;
         }
       }
 
@@ -141,24 +162,43 @@
         flex-flow: row wrap;
         gap: 1rem;
         justify-content: center;
-        margin-block: 2.5rem 0;
+        margin-block: 0;
         margin-inline: 0;
 
         @include mixins.mq-down(medium) {
           flex-direction: column;
-          margin-block-start: 2rem;
 
           a {
             inline-size: 100%;
           }
         }
       }
+
+      &__scroll-indicator {
+        animation: scroll-bounce 2s ease-in-out infinite;
+        block-size: 32px;
+        color: var(--c-text-muted);
+        inset-block-end: variables.$space-xl;
+        inline-size: 32px;
+        margin-block-start: variables.$space-2xl;
+        opacity: 0.6;
+
+        @keyframes scroll-bounce {
+          0%, 100% { transform: translateY(0); }
+          50%       { transform: translateY(8px); }
+        }
+      }
     }
   }
 
+  &--stats {
+    background: var(--c-bg-secondary);
+    padding-block: variables.$space-2xl;
+  }
+
   &--about {
-    background: variables.$c-dark-blue;
-    color: variables.$c-white;
+    background: var(--c-bg-primary);
+    color: var(--c-text-base);
 
     .section__image {
       display: flex;
@@ -176,44 +216,48 @@
       }
 
       .section__image {
-        flex: 0 0 45%;
+        flex: 0 0 40%;
         justify-content: flex-end;
       }
     }
   }
 
   &--value {
-    background: variables.$c-green;
-    color: variables.$c-white;
+    background: var(--c-bg-tertiary);
+    color: var(--c-text-base);
   }
 
   &--experience {
-    background: variables.$c-yellow;
-    color: variables.$c-black;
+    background: var(--c-bg-primary);
+    color: var(--c-text-base);
   }
 
   &--skills {
-    background: variables.$c-orange;
+    background: var(--c-bg-secondary);
+    color: var(--c-text-base);
   }
 
   &--projects {
-    background: variables.$c-light-blue;
+    background: var(--c-bg-primary);
+    color: var(--c-text-base);
+  }
+
+  &--testimonials {
+    background: var(--c-bg-tertiary);
+    color: var(--c-text-base);
   }
 
   &--contact {
-    background: variables.$c-yellow;
-  }
-
-  &--links {
-    background: variables.$c-green;
+    background: var(--c-bg-secondary);
+    color: var(--c-text-base);
   }
 
   &--full-height {
-    background: variables.$c-dark-blue;
-    color: variables.$c-white;
+    background: var(--c-bg-primary);
+    color: var(--c-text-bright);
 
     .button {
-      @include mixins.button($bg: variables.$c-white, $fg: variables.$c-blue);
+      @include mixins.button($bg: variables.$c-teal, $fg: variables.$c-navy-900);
     }
   }
 
@@ -227,11 +271,7 @@
 
 .line-divider {
   border: none;
-  border-block-start: 1px solid variables.$c-muted;
-  margin-block: variables.$space-lg variables.$space-lg;
+  border-block-start: 1px solid var(--c-border);
+  margin-block: variables.$space-lg;
   margin-inline: 0;
-
-  &--white {
-    border-block-start: 1px solid variables.$c-white;
-  }
 }

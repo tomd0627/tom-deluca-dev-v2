@@ -2,85 +2,79 @@
 @use '../settings/variables';
 
 .skill-card-list {
+  display: grid;
+  gap: variables.$space-xl;
+  grid-template-columns: 1fr;
+
   @include mixins.mq-up(medium) {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 
   &__item {
-    background: variables.$c-white;
-    border-radius: 0.5rem;
-    margin-block: 0 2rem;
+    background: var(--c-bg-primary);
+    border-inline-start: 4px solid var(--c-accent);
+    border-radius: 0 0.75rem 0.75rem 0;
+    margin-block: 0;
     margin-inline: 0;
     padding-block: 2rem;
     padding-inline: 2rem;
-    position: relative;
 
-    &:last-child {
-      margin-block: 0;
+    h3 {
+      color: var(--c-text-bright);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: variables.$fs-xl;
+      margin-block: 0 variables.$space-lg;
       margin-inline: 0;
-    }
-
-    @include mixins.mq-up(large) {
-      flex: 1 calc(50% - 2rem);
     }
 
     &__icon {
-      font-size: 3rem;
-      inset-block-start: -1rem;
-      inset-inline-end: 1rem;
-      position: absolute;
-
-      @include mixins.mq-up(medium) {
-        font-size: 6rem;
-        inset-block-start: -2rem;
-      }
-
-      @include mixins.mq-up(x-large) {
-        inset-inline-end: 2rem;
-      }
-
-      .skill-card-list__item--core-skills & {
-        color: variables.$c-blue;
-      }
-
-      .skill-card-list__item--specialized-skills & {
-        color: variables.$c-yellow;
-      }
-
-      .skill-card-list__item--professional-skills & {
-        color: variables.$c-green;
-      }
+      color: var(--c-accent);
+      font-size: 1.5rem;
+      flex-shrink: 0;
     }
 
-    h3 {
-      margin-block: 0 1.5rem;
-      margin-inline: 0;
+    // Tag cloud for core skills
+    .skill-tags {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 0.5rem;
+      margin-block-start: variables.$space-base;
     }
 
+    .skill-tag {
+      background: var(--c-bg-tertiary);
+      border: 1px solid var(--c-border);
+      border-radius: 4px;
+      color: var(--c-accent);
+      font-size: variables.$fs-xs;
+      font-weight: variables.$fw-medium;
+      padding-block: 0.25rem;
+      padding-inline: 0.6rem;
+    }
+
+    // Plain list for specialized/professional skills
     ul {
+      list-style: none;
       margin-block: 0;
-      margin-inline-start: 1.2rem;
-      padding-block: 0;
-      padding-inline: 0;
-
-      @include mixins.mq-up(medium) {
-        display: flex;
-        flex-flow: row wrap;
-      }
+      margin-inline: 0;
+      padding: 0;
 
       li {
-        color: variables.$c-muted;
+        color: var(--c-text-base);
         font-size: variables.$fs-base;
         line-height: variables.$lh-relaxed;
-        margin-block: 0 0.6rem;
+        margin-block: 0 0.4rem;
         margin-inline: 0;
+        padding-inline-start: 1.2rem;
+        position: relative;
 
-        @include mixins.mq-up(medium) {
-          flex: 1 50%;
-          padding-inline-end: 3rem;
+        &::before {
+          color: var(--c-accent);
+          content: '▸';
+          inset-inline-start: 0;
+          position: absolute;
         }
       }
     }

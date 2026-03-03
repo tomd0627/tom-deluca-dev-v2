@@ -1,6 +1,5 @@
 @use '../settings/variables';
 @use 'mixins';
-@import 'https://fonts.googleapis.com/css2?family=Lato&family=Raleway:wght@600&display=swap';
 
 *,
 *::before,
@@ -14,15 +13,18 @@ body {
 }
 
 body {
-  background: variables.$c-white;
-  color: variables.$c-black;
+  background: var(--c-bg-primary);
+  color: var(--c-text-base);
   display: flex;
   flex-flow: column nowrap;
   font-family: variables.$ff-body;
   font-size: 1rem;
-  line-height: 1.2rem;
+  line-height: 1.6;
   margin-block: 0;
   margin-inline: 0;
+  transition:
+    background variables.$s-base,
+    color variables.$s-base;
 }
 
 main {
@@ -34,28 +36,46 @@ main {
 h1,
 h2,
 h3 {
+  color: var(--c-text-bright);
   font-family: variables.$ff-heading;
   font-weight: variables.$fw-bold;
 }
 
 h1 {
-  font-size: 3.6rem;
-  line-height: 3.8rem;
+  font-size: variables.$fs-5xl;
+  line-height: variables.$lh-tight;
+
+  @include mixins.mq-up(large) {
+    font-size: variables.$fs-6xl;
+  }
 }
 
 h2 {
-  font-size: 2.8rem;
-  line-height: 3rem;
+  font-size: variables.$fs-3xl;
+  line-height: variables.$lh-snug;
+
+  @include mixins.mq-up(large) {
+    font-size: variables.$fs-4xl;
+  }
 }
 
 h3 {
-  font-size: 2rem;
-  line-height: 2.2rem;
+  font-size: variables.$fs-xl;
+  line-height: variables.$lh-normal;
+
+  @include mixins.mq-up(large) {
+    font-size: variables.$fs-2xl;
+  }
 }
 
 a {
-  color: variables.$c-blue;
+  color: var(--c-accent);
   text-decoration: none;
+  transition: color variables.$s-fast;
+
+  &:hover {
+    color: var(--c-accent-hover);
+  }
 }
 
 img {
@@ -113,4 +133,25 @@ img {
   inset-inline-start: -9999rem;
   overflow: hidden;
   position: absolute;
+}
+
+// ============================================================
+// Custom cursor follower (desktop only — hidden on touch)
+// ============================================================
+.cursor-follower {
+  background: var(--c-accent);
+  block-size: 14px;
+  border-radius: 50%;
+  inline-size: 14px;
+  mix-blend-mode: difference;
+  opacity: 0.6;
+  pointer-events: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  transition: transform variables.$s-fast;
+  z-index: variables.$z-100;
+
+  @media (hover: none) {
+    display: none;
+  }
 }

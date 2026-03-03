@@ -2,28 +2,42 @@
 @use '../settings/variables';
 
 .header {
-  background: variables.$c-blue-75;
-  color: variables.$c-white;
+  background: rgb(11 22 34 / 70%);
+  backdrop-filter: blur(12px);
+  border-block-end: 1px solid var(--c-border);
+  color: var(--c-text-base);
   inset-block-start: 0;
   inset-inline: 0;
-  padding-block: 1.5em;
+  padding-block: 1.25rem;
   padding-inline: 0;
   position: fixed;
-  transition: transform variables.$s-base;
+  transition:
+    background variables.$s-base,
+    border-color variables.$s-base,
+    transform variables.$s-base;
   z-index: variables.$z-10;
+
+  [data-theme='light'] & {
+    background: rgb(246 248 252 / 85%);
+  }
 
   .body-scroll-down & {
     transform: translateY(-100%);
   }
 
   a {
-    color: variables.$c-white;
+    color: var(--c-text-base);
+
+    &:hover {
+      color: var(--c-accent);
+    }
   }
 
   &__inner {
     align-items: center;
     display: flex;
     flex-flow: row nowrap;
+    gap: 1rem;
     justify-content: space-between;
     min-block-size: 1.875rem;
     position: relative;
@@ -34,7 +48,7 @@
   }
 
   &__skip-to-content {
-    @include mixins.button($bg: variables.$c-blue, $fg: variables.$c-white);
+    @include mixins.button($bg: variables.$c-teal, $fg: variables.$c-navy-900);
 
     position: absolute;
     transform: translateY(-150%);
@@ -50,12 +64,67 @@
   }
 
   &__logo {
-    font-family: variables.$ff-heading;
-    font-size: 1.5rem;
+    color: var(--c-accent);
+    font-family: variables.$ff-mono;
+    font-size: 1.25rem;
     font-weight: variables.$fw-bold;
+    letter-spacing: -0.02em;
+
+    &:hover {
+      color: var(--c-accent-hover);
+    }
 
     @include mixins.mq-up(large) {
-      font-size: 2rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  // Right-side controls: theme toggle + hamburger
+  &__controls {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.75rem;
+  }
+
+  &__theme-toggle {
+    align-items: center;
+    background: none;
+    border: 1px solid var(--c-border);
+    border-radius: 50vw;
+    color: var(--c-text-muted);
+    cursor: pointer;
+    display: flex;
+    block-size: 36px;
+    inline-size: 36px;
+    justify-content: center;
+    padding: 0;
+    transition:
+      border-color variables.$s-fast,
+      color variables.$s-fast;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+    }
+
+    .icon-sun {
+      display: none;
+    }
+
+    .icon-moon {
+      display: block;
+    }
+
+    [data-theme='light'] & {
+      .icon-sun {
+        display: block;
+      }
+
+      .icon-moon {
+        display: none;
+      }
     }
   }
 
@@ -74,8 +143,9 @@
     inline-size: 40px;
 
     .bar {
-      background: variables.$c-white;
-      block-size: 3px;
+      background: var(--c-text-base);
+      block-size: 2px;
+      border-radius: 2px;
       display: block;
       inline-size: 100%;
       opacity: 1;
@@ -86,7 +156,7 @@
 
       .show-nav & {
         &--top {
-          transform: translateY(9px) rotate(45deg);
+          transform: translateY(8px) rotate(45deg);
         }
 
         &--mid {
@@ -94,7 +164,7 @@
         }
 
         &--bot {
-          transform: translateY(-9px) rotate(-45deg);
+          transform: translateY(-8px) rotate(-45deg);
         }
       }
     }
@@ -105,8 +175,9 @@
   }
 
   &__nav {
-    background: variables.$c-blue-75;
-    inset-block-start: calc(100% + 1.5rem);
+    background: var(--c-bg-secondary);
+    border-block-end: 1px solid var(--c-border);
+    inset-block-start: calc(100% + 1.25rem);
     inset-inline: 0;
     margin-block: 0;
     margin-inline: -1.5rem;
@@ -116,15 +187,12 @@
     transition: max-block-size variables.$s-base;
 
     .show-nav & {
-      max-block-size: 20rem;
-    }
-
-    .body-scroll-down & {
-      transform: translateY(-100%);
+      max-block-size: 24rem;
     }
 
     @include mixins.mq-up(large) {
       background: none;
+      border: none;
       margin-block: 0;
       margin-inline: 0;
       max-block-size: none;
@@ -143,18 +211,20 @@
 
       li {
         a {
+          color: var(--c-text-muted);
           display: block;
-          font-size: 1.2rem;
+          font-size: variables.$fs-base;
           padding-block: 1rem;
           padding-inline: 1.5rem;
           position: relative;
-          transition: all variables.$s-base;
+          transition:
+            color variables.$s-fast,
+            background variables.$s-fast;
 
           &:focus-visible,
           &:hover,
           &.active {
-            background: variables.$c-white;
-            color: variables.$c-blue;
+            color: var(--c-accent);
           }
 
           @include mixins.mq-up(large) {
@@ -162,39 +232,23 @@
             padding-inline: 0;
 
             &::after {
-              background: variables.$c-white;
-              border-radius: 0.5rem;
+              background: var(--c-accent);
+              block-size: 1px;
+              border-radius: 1px;
+              bottom: -2px;
               content: '';
               display: block;
-              block-size: 2px;
-              inset-block-end: 0;
-              inset-inline-start: 50%;
+              inset-inline-start: 0;
               position: absolute;
-              transition:
-                height variables.$s-base,
-                width variables.$s-base variables.$s-slow;
-              transform: translateX(-50%);
+              transition: inline-size variables.$s-base;
               inline-size: 0;
-              z-index: variables.$z-neg-1;
-
-              [dir='rtl'] & {
-                transform: translateX(50%);
-              }
             }
 
             &:focus-visible,
             &:hover,
             &.active {
-              background: none;
-              color: variables.$c-blue;
-              transition: all variables.$s-base variables.$s-slow;
-
               &::after {
-                block-size: 100%;
-                transition:
-                  height variables.$s-base variables.$s-slow,
-                  width variables.$s-base;
-                inline-size: 125%;
+                inline-size: 100%;
               }
             }
           }

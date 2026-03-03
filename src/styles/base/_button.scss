@@ -4,42 +4,51 @@
 .button {
   @include mixins.button;
 
+  // Primary: teal fill + dark text (high contrast on dark bg)
   &--primary {
-    @include mixins.button($bg: variables.$c-orange, $fg: variables.$c-white);
+    @include mixins.button($bg: variables.$c-teal, $fg: variables.$c-navy-900);
+
+    font-weight: variables.$fw-bold;
 
     &:focus-visible,
     &:hover {
-      background: variables.$c-white;
-      border-color: variables.$c-orange;
-      color: variables.$c-orange;
+      background: variables.$c-teal-dim;
+      border-color: variables.$c-teal-dim;
+      box-shadow: variables.$shadow-teal;
+      color: variables.$c-navy-900;
     }
   }
 
+  // Secondary: teal outline + teal text (ghost button)
   &--secondary {
-    @include mixins.button($bg: variables.$c-dark-blue, $fg: variables.$c-white);
+    @include mixins.button($bg: transparent, $fg: variables.$c-teal);
+
+    border-color: variables.$c-teal;
 
     &:focus-visible,
     &:hover {
-      background: variables.$c-white;
-      border-color: variables.$c-dark-blue;
-      color: variables.$c-dark-blue;
+      background: rgb(94 240 200 / 10%);
+      border-color: variables.$c-teal;
+      color: variables.$c-teal;
     }
   }
 
+  // Outline: muted border, text-muted color (tertiary action)
   &--outline {
-    @include mixins.button($bg: transparent, $fg: variables.$c-dark-blue);
+    @include mixins.button($bg: transparent, $fg: variables.$c-text-muted);
 
-    border: 2px solid variables.$c-dark-blue;
+    border-color: var(--c-border);
 
     &:focus-visible,
     &:hover {
-      background: variables.$c-dark-blue;
-      color: variables.$c-white;
+      background: rgb(94 240 200 / 8%);
+      border-color: variables.$c-teal;
+      color: variables.$c-teal;
     }
   }
 
   &--large {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     min-inline-size: 18rem;
     padding-block: 1rem;
     padding-inline: 2rem;
