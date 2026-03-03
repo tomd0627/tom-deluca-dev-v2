@@ -10,35 +10,42 @@ import SectionTitle from '../elements/SectionTitle.astro';
   <SectionIntro>
     <SectionTitle title="About me" />
     <p class="animate-fade">
-      Hi there! I'm <span class="section__highlight">Tom DeLuca</span>, a passionate front-end
-      developer based in Warwick, New York with a diverse professional background.
+      Hi, I'm <span class="section__highlight">Tom DeLuca</span> — a senior front-end developer
+      based in Warwick, New York with 10+ years building production web experiences.
     </p>
     <p class="animate-fade">
-      I craft <strong>seamless, responsive websites and web applications</strong> with a deep expertise
-      in <strong>HTML, CSS, JavaScript, and modern web technologies</strong>. I bring designs to
-      life with precision and clean code, while maintaining a strong focus on user experience,
-      performance, and accessibility. Collaborating with designers, backend developers, and
-      cross-functional teams is where I thrive.
+      I specialize in translating designs into <strong>pixel-perfect, accessible, high-performance
+      interfaces</strong> — from enterprise CMS platforms to modern React/Next.js applications. My
+      stack spans <span class="tech-tag">React</span> <span class="tech-tag">Angular</span>
+      <span class="tech-tag">Sitecore</span> <span class="tech-tag">Optimizely</span>
+      <span class="tech-tag">GSAP</span> and beyond.
     </p>
     <p class="animate-fade">
-      Beyond development, my professional journey includes <strong
-        >office administration and operations experience</strong
-      >, which has honed my exceptional <strong
-        >organizational skills, attention to detail, and ability to manage complex workflows</strong
-      >. This unique combination makes me adaptable, reliable, and effective in diverse professional
-      environments. I also provide <strong>medical and legal transcription services</strong> with precision
-      and confidentiality.
+      I thrive in cross-functional teams — working closely with designers, back-end engineers, and
+      stakeholders to ship on time and at the quality bar enterprise clients demand.
     </p>
     <p class="animate-fade">
-      <strong>Available for:</strong> Full-time front-end development roles, contract opportunities, transcription
-      projects, or positions leveraging my technical, transcription, and administrative expertise.
+      Outside of code, I'm into anime, gaming, and spending time with family and friends.
     </p>
     <p class="animate-fade">
-      Outside of work, you'll find me exploring new anime, gaming, enjoying my local bar scene, or
-      spending my time with family and friends.
+      <strong>Also available for:</strong> Transcription services and office operations consulting.
     </p>
   </SectionIntro>
   <div class="section__image animate-fade">
     <Image src={imgHeadshot} alt="Tom DeLuca headshot" loading="eager" />
   </div>
 </Section>
+
+<style>
+  .tech-tag {
+    background: rgba(94, 240, 200, 0.12);
+    border: 1px solid rgba(94, 240, 200, 0.25);
+    border-radius: 4px;
+    color: var(--c-accent);
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding-block: 0.1rem;
+    padding-inline: 0.5rem;
+  }
+</style>
