@@ -1,0 +1,28 @@
+---
+import Section from '../elements/Section.astro';
+import SectionIntro from '../elements/SectionIntro.astro';
+import SectionTitle from '../elements/SectionTitle.astro';
+import TestimonialCard from '../elements/TestimonialCard.astro';
+---
+
+<Section cssClass="section--testimonials" title="testimonials">
+  <SectionIntro>
+    <SectionTitle title="What colleagues say" />
+    <p class="animate-fade">
+      Feedback from designers, developers, and managers I've worked with at enterprise clients.
+    </p>
+  </SectionIntro>
+  <div class="testimonial-grid">
+    <!-- Populated with LinkedIn recommendations — Tom to provide quotes before launch -->
+    <TestimonialCard
+      quote="Placeholder — Tom to replace with real LinkedIn recommendation before launch."
+      name="Colleague Name"
+      title="Role, Company"
+    />
+    <TestimonialCard
+      quote="Placeholder — Tom to replace with real LinkedIn recommendation before launch."
+      name="Colleague Name"
+      title="Role, Company"
+    />
+  </div>
+</Section>

@@ -1,0 +1,16 @@
+---
+export interface Props {
+  value: number;
+  suffix?: string;
+  label: string;
+}
+
+const { value, suffix = '+', label } = Astro.props;
+---
+
+<div class="stat-item animate-slide">
+  <span class="stat-item__number" data-target={value}>0</span><span class="stat-item__suffix"
+    >{suffix}</span
+  >
+  <span class="stat-item__label">{label}</span>
+</div>

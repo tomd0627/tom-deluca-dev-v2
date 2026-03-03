@@ -8,13 +8,16 @@ export interface Props {
 const { title, date, company } = Astro.props;
 ---
 
-<div class="experience-card animate-slide">
-  <div class="experience-card__header">
-    <h3 class="experience-card__title">{title}</h3>
-    {date ? <span class="experience-card__date">{date}</span> : null}
-  </div>
-  {company ? <p class="experience-card__company">{company}</p> : null}
-  <div class="experience-card__content">
-    <slot />
+<div class="experience-item animate-slide">
+  <div class="experience-item__node" aria-hidden="true"></div>
+  <div class="experience-item__body">
+    <div class="experience-item__header">
+      <h3 class="experience-item__title">{title}</h3>
+      {date ? <span class="experience-item__date">{date}</span> : null}
+    </div>
+    {company ? <p class="experience-item__company">{company}</p> : null}
+    <div class="experience-item__content">
+      <slot />
+    </div>
   </div>
 </div>

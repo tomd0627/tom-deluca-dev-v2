@@ -1,0 +1,48 @@
+@use '../base/mixins';
+@use '../settings/variables';
+
+.stats-bar {
+  display: grid;
+  gap: variables.$space-xl;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+
+  @include mixins.mq-up(large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &__number {
+    color: var(--c-accent);
+    font-family: variables.$ff-heading;
+    font-size: variables.$fs-5xl;
+    font-weight: variables.$fw-extra-bold;
+    line-height: 1;
+
+    @include mixins.mq-up(large) {
+      font-size: variables.$fs-6xl;
+    }
+  }
+
+  &__suffix {
+    color: var(--c-accent);
+    font-family: variables.$ff-heading;
+    font-size: variables.$fs-4xl;
+    font-weight: variables.$fw-extra-bold;
+    line-height: 1;
+    vertical-align: super;
+  }
+
+  &__label {
+    color: var(--c-text-muted);
+    font-size: variables.$fs-sm;
+    font-weight: variables.$fw-medium;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}

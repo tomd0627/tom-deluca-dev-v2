@@ -1,80 +1,106 @@
 @use '../base/mixins';
 @use '../settings/variables';
 
-.experience-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  margin-block-start: 3rem;
+.experience-timeline {
+  margin-block-start: variables.$space-2xl;
+  padding-inline-start: 2rem;
+  position: relative;
+
+  // Vertical teal line
+  &::before {
+    background: var(--c-accent);
+    block-size: 100%;
+    content: '';
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    opacity: 0.3;
+    position: absolute;
+    inline-size: 1px;
+  }
 }
 
-.experience-card {
-  background: variables.$c-white;
-  border-radius: 0.5rem;
-  padding-block: variables.$space-xl;
-  padding-inline: variables.$space-xl;
+.experience-item {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1.5rem;
+  margin-block-end: variables.$space-2xl;
+  position: relative;
 
-  @include mixins.mq-down(medium) {
-    padding-block: variables.$space-lg;
-    padding-inline: variables.$space-lg;
+  &:last-child {
+    margin-block-end: 0;
+  }
+
+  &__node {
+    background: var(--c-accent);
+    block-size: 12px;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 3px var(--c-bg-primary),
+      0 0 0 5px var(--c-accent);
+    flex-shrink: 0;
+    inline-size: 12px;
+    inset-block-start: 0.6rem;
+    inset-inline-start: -2.35rem;
+    position: absolute;
+  }
+
+  &__body {
+    flex: 1;
   }
 
   &__header {
     align-items: baseline;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.75rem;
     justify-content: space-between;
-    margin-block-end: 0.5rem;
-
-    @include mixins.mq-down(medium) {
-      flex-direction: column;
-    }
+    margin-block-end: 0.25rem;
   }
 
   &__title {
-    margin-block: 0 1.5rem;
+    color: var(--c-text-bright);
+    font-size: variables.$fs-2xl;
+    font-weight: variables.$fw-bold;
+    line-height: variables.$lh-snug;
+    margin-block: 0;
     margin-inline: 0;
   }
 
   &__date {
-    color: variables.$c-muted-2;
+    color: var(--c-accent);
     font-size: variables.$fs-sm;
     font-weight: variables.$fw-medium;
-    line-height: variables.$lh-normal;
     white-space: nowrap;
   }
 
   &__company {
-    color: variables.$c-orange;
-    font-size: variables.$fs-lg;
-    font-weight: variables.$fw-bold;
-    line-height: variables.$lh-normal;
-    margin-block: 0 variables.$space-base;
+    color: var(--c-text-muted);
+    font-size: variables.$fs-base;
+    font-style: italic;
+    margin-block: 0 variables.$space-lg;
     margin-inline: 0;
   }
 
   &__highlights {
+    list-style: none;
     margin-block: 0;
-    margin-inline-start: 1.2rem;
-    padding-block: 0;
-    padding-inline: 0;
-
-    @include mixins.mq-up(medium) {
-      display: flex;
-      flex-flow: row wrap;
-    }
+    margin-inline: 0;
+    padding: 0;
 
     li {
-      color: variables.$c-muted;
+      color: var(--c-text-base);
       font-size: variables.$fs-base;
       line-height: variables.$lh-relaxed;
       margin-block: 0 0.6rem;
       margin-inline: 0;
+      padding-inline-start: 1.2rem;
+      position: relative;
 
-      @include mixins.mq-up(medium) {
-        flex: 1 50%;
-        padding-inline-end: 3rem;
+      &::before {
+        color: var(--c-accent);
+        content: '▸';
+        inset-inline-start: 0;
+        position: absolute;
       }
     }
   }

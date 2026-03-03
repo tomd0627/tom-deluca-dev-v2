@@ -1,5 +1,4 @@
 ---
-import ProjectCard from '../elements/ProjectCard.astro';
 import Section from '../elements/Section.astro';
 import SectionIntro from '../elements/SectionIntro.astro';
 import SectionTitle from '../elements/SectionTitle.astro';
@@ -12,126 +11,128 @@ import imgProjectRra from '../../assets/images/projects/rra.png';
 import imgProjectAruba from '../../assets/images/projects/ob.png';
 import imgProjectAb from '../../assets/images/projects/ab.png';
 import imgProjectAsh from '../../assets/images/projects/ash.png';
+
+interface BentoProject {
+  name: string;
+  challenge: string;
+  tags: string[];
+  image: ImageMetadata;
+  alt: string;
+  href: string;
+  wide?: boolean;
+}
+
+// TODO (Phase 4): Replace all href values with real client URLs
+const projects: BentoProject[] = [
+  {
+    name: 'Rapid7',
+    challenge: 'Optimizely CMS bug fixes, responsive updates, and CSS performance improvements',
+    tags: ['Optimizely', 'CSS', 'Responsive'],
+    image: imgProjectRapid7,
+    alt: 'Rapid7 website screenshot',
+    href: '/',
+    wide: true,
+  },
+  {
+    name: 'CIGA',
+    challenge: 'Reusable React/Next.js components with Tailwind CSS utility-first system',
+    tags: ['React', 'Next.js', 'Tailwind CSS'],
+    image: imgProjectCiga,
+    alt: 'California Insurance Guarantee Association website screenshot',
+    href: '/',
+  },
+  {
+    name: 'Cencora',
+    challenge: 'GSAP-animated Storybook components for a high-impact brand announcement',
+    tags: ['GSAP', 'Storybook', 'Animation'],
+    image: imgProjectCencora,
+    alt: 'Cencora website screenshot',
+    href: '/',
+  },
+  {
+    name: 'Russell Reynolds',
+    challenge: 'Storybook + Sitecore components from high-fidelity design mockups',
+    tags: ['Sitecore', 'Storybook', 'Design Systems'],
+    image: imgProjectRra,
+    alt: 'Russell Reynolds Associates website screenshot',
+    href: '/',
+    wide: true,
+  },
+  {
+    name: 'Corbion',
+    challenge: 'Pre-launch QA, CSS refinements, and critical bug fixes for Sitecore go-live',
+    tags: ['Sitecore', 'CSS', 'QA'],
+    image: imgProjectCorbion,
+    alt: 'Corbion website screenshot',
+    href: '/',
+  },
+  {
+    name: 'Orco Bank',
+    challenge: 'Legacy banking platform migration to modern Sitecore SXA architecture',
+    tags: ['Sitecore SXA', 'Migration', 'CSS'],
+    image: imgProjectAruba,
+    alt: 'Orco Bank website screenshot',
+    href: '/',
+  },
+  {
+    name: 'AmerisourceBergen',
+    challenge: 'Multi-unit enterprise rebranding with updated design standards',
+    tags: ['Rebranding', 'CSS', 'Components'],
+    image: imgProjectAb,
+    alt: 'AmerisourceBergen website screenshot',
+    href: '/',
+  },
+  {
+    name: 'ASH',
+    challenge: 'Full website launch: design-to-component build + content migration on deadline',
+    tags: ['HTML', 'CSS', 'Launch'],
+    image: imgProjectAsh,
+    alt: 'American Society of Hematology website screenshot',
+    href: '/',
+    wide: true,
+  },
+];
 ---
 
 <Section cssClass="section--projects" title="projects">
   <SectionIntro>
     <SectionTitle title="My projects" />
     <p class="animate-fade">
-      I'm excited to share some of the enterprise and commercial projects I've completed. Each
-      demonstrates my ability to deliver clean, efficient code and drive measurable results across
-      different platforms and technologies.
-    </p>
-    <p class="animate-fade">
-      <span class="hide-desktop">Top on</span>
-      <span class="hide-mobile">Hover over</span> a card to dive into the details and see how I bring
-      ideas to life.
+      Enterprise and commercial work spanning Fortune 500 clients, pharmaceutical distribution,
+      global finance, and healthcare — delivered on time, pixel-perfect, and at scale.
     </p>
   </SectionIntro>
-  <div class="project-card-list">
-    <ProjectCard name="Rapid7">
-      <Image
-        slot="project-card-image"
-        src={imgProjectRapid7}
-        alt="Rapid7 website screenshot"
-        loading="lazy"
-      />
-      <p>
-        Maintained enterprise website using the Optimizely CMS platform. Delivered bug fixes,
-        responsive style updates, and content optimization across multiple components. Improved site
-        performance and user experience through targeted CSS enhancements.
-      </p>
-    </ProjectCard>
-    <ProjectCard name="California Insurance Guarantee Association">
-      <Image
-        slot="project-card-image"
-        src={imgProjectCiga}
-        alt="California Insurance Guarantee Association website screenshot"
-        loading="lazy"
-      />
-      <p>
-        Built responsive, reusable components for a modern React/Next.js application using Tailwind
-        CSS. Implemented utility-first styling approach, ensuring consistency across the platform
-        and reducing development time for future feature additions.
-      </p>
-    </ProjectCard>
-    <ProjectCard name="Cencora">
-      <Image
-        slot="project-card-image"
-        src={imgProjectCencora}
-        alt="Cencora website screenshot"
-        loading="lazy"
-      />
-      <p>
-        Developed eye-catching splash page for major brand announcement using Storybook component
-        library and GSAP animations. Created engaging visual experiences with smooth, performant
-        animations that enhanced user engagement and brand impact.
-      </p>
-    </ProjectCard>
-    <ProjectCard name="Corbion">
-      <Image
-        slot="project-card-image"
-        src={imgProjectCorbion}
-        alt="Corbion website screenshot"
-        loading="lazy"
-      />
-      <p>
-        Executed pre-launch quality assurance on enterprise Sitecore site, delivering critical CSS
-        refinements and cross-browser bug fixes. Ensured pixel-perfect implementation across all
-        components and devices for successful go-live.
-      </p>
-    </ProjectCard>
-    <ProjectCard name="Russell Reynolds Associates">
-      <Image
-        slot="project-card-image"
-        src={imgProjectRra}
-        alt="Russell Reynolds Associates website screenshot"
-        loading="lazy"
-      />
-      <p>
-        Translated high-fidelity design mockups into production-ready components using Storybook and
-        Sitecore architecture. Maintained design system consistency while optimizing for both
-        developer experience and end-user performance.
-      </p>
-    </ProjectCard>
-    <ProjectCard name="Orco Bank">
-      <Image
-        slot="project-card-image"
-        src={imgProjectAruba}
-        alt="Orco Bank website screenshot"
-        loading="lazy"
-      />
-      <p>
-        Led design translation initiative for major platform migration using Sitecore SXA
-        components. Successfully converted legacy systems to modern architecture while preserving
-        functionality and improving performance across multiple banking institutions.
-      </p>
-    </ProjectCard>
-    <ProjectCard name="AmerisourceBergen">
-      <Image
-        slot="project-card-image"
-        src={imgProjectAb}
-        alt="AmerisourceBergen website screenshot"
-        loading="lazy"
-      />
-      <p>
-        Executed comprehensive rebranding initiative across multiple business units, translating new
-        design standards into functional components while updating legacy styles. Ensured brand
-        consistency and maintained backward compatibility throughout the transition.
-      </p>
-    </ProjectCard>
-    <ProjectCard name="American Society of Hematology">
-      <Image
-        slot="project-card-image"
-        src={imgProjectAsh}
-        alt="American Society of Hematology website screenshot"
-        loading="lazy"
-      />
-      <p>
-        Delivered under tight deadline for organizational website launch. Translated design
-        specifications into functional components, executed content migration, and resolved critical
-        bugs to ensure on-time go-live with zero post-launch issues.
-      </p>
-    </ProjectCard>
+  <div class="project-bento">
+    {
+      projects.map((project) => (
+        <a
+          href={project.href}
+          class={`project-bento__cell animate-slide${project.wide ? ' project-bento__cell--wide' : ''}`}
+          aria-label={`View ${project.name} project`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={project.image}
+            alt={project.alt}
+            loading="lazy"
+            class="project-bento__image"
+          />
+          <div class="project-bento__overlay" aria-hidden="true" />
+          <div class="project-bento__content">
+            <h3 class="project-bento__name">{project.name}</h3>
+            <p class="project-bento__challenge">{project.challenge}</p>
+            <div class="project-bento__tags">
+              {project.tags.map((tag) => (
+                <span class="project-bento__tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+          <span class="project-bento__cta" aria-hidden="true">
+            View project →
+          </span>
+        </a>
+      ))
+    }
   </div>
 </Section>

@@ -3,26 +3,37 @@ import Section from '../elements/Section.astro';
 ---
 
 <Section cssClass="section--hero" title="hero">
-  <div class="hero__content">
-    <h1 class="hero__title animate-fade">
-      <span class="hero__highlight">Senior Front-End Developer</span>
+  <div class="hero">
+    <p class="hero__eyebrow">Available for hire</p>
+    <h1 class="hero__title">
+      <span class="word">Senior</span> <span class="word">Front-End</span>
+      <br />
+      <span class="word">Developer</span>
     </h1>
-    <p class="hero__subtitle animate-fade">
-      Transforming designs into responsive, high-performance web experiences while bringing diverse
-      professional skills to every project.
+    <p class="hero__subtitle">
+      10+ years building enterprise-grade web experiences for Fortune 500 companies — React, Angular,
+      Sitecore, Optimizely, Next.js.
     </p>
-    <p class="hero__description animate-fade">
-      Based in <strong>Warwick, New York</strong> | Specializing in <strong
-        >HTML CSS, JavaScript, & modern web technologies</strong
-      >
-    </p>
-    <div class="hero__ctas animate-fade">
+    <div class="hero__ctas">
       <a href="#contact" class="button button--large button--primary">
         <i class="fas fa-envelope" aria-hidden="true"></i> Let's work together
       </a>
-      <a href="#links" class="button button--large button--secondary">
-        <i class="fas fa-file-lines" aria-hidden="true"></i> View my resumes
+      <a href="#projects" class="button button--large button--secondary">
+        <i class="fas fa-arrow-down" aria-hidden="true"></i> View my work
       </a>
+    </div>
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
     </div>
   </div>
 </Section>

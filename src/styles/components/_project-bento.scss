@@ -1,0 +1,146 @@
+@use '../base/mixins';
+@use '../settings/variables';
+
+.project-bento {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin-block-start: variables.$space-xl;
+
+  @include mixins.mq-up(medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mixins.mq-up(large) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__cell {
+    aspect-ratio: 4 / 3;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    transition:
+      box-shadow variables.$s-base,
+      transform variables.$s-base;
+
+    &:focus-visible,
+    &:hover {
+      box-shadow: variables.$shadow-teal;
+      transform: translateY(-4px);
+
+      .project-bento__overlay {
+        opacity: 0.35;
+      }
+
+      .project-bento__cta {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @include mixins.mq-up(medium) {
+      &--wide {
+        grid-column: span 2;
+        aspect-ratio: auto;
+        min-block-size: 280px;
+      }
+    }
+  }
+
+  &__image {
+    block-size: 100%;
+    inline-size: 100%;
+    inset: 0;
+    object-fit: cover;
+    object-position: center top;
+    position: absolute;
+    transition: transform variables.$s-slow;
+
+    .project-bento__cell:hover & {
+      transform: scale(1.03);
+    }
+  }
+
+  &__overlay {
+    background: linear-gradient(
+      to top,
+      rgb(11 22 34 / 90%) 0%,
+      rgb(11 22 34 / 60%) 50%,
+      rgb(11 22 34 / 20%) 100%
+    );
+    block-size: 100%;
+    inline-size: 100%;
+    inset: 0;
+    opacity: 0.6;
+    position: absolute;
+    transition: opacity variables.$s-base;
+    z-index: variables.$z-1;
+  }
+
+  &__content {
+    block-size: 100%;
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    justify-content: flex-end;
+    padding-block: 1.5rem;
+    padding-inline: 1.5rem;
+    position: absolute;
+    z-index: variables.$z-2;
+  }
+
+  &__name {
+    color: variables.$c-text-bright;
+    font-size: variables.$fs-xl;
+    font-weight: variables.$fw-bold;
+    line-height: variables.$lh-snug;
+    margin-block: 0 0.5rem;
+    margin-inline: 0;
+  }
+
+  &__challenge {
+    color: variables.$c-text-base;
+    font-size: variables.$fs-sm;
+    line-height: variables.$lh-relaxed;
+    margin-block: 0 0.75rem;
+    margin-inline: 0;
+    opacity: 0.9;
+  }
+
+  &__tags {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.4rem;
+  }
+
+  &__tag {
+    background: rgb(94 240 200 / 15%);
+    border: 1px solid rgb(94 240 200 / 30%);
+    border-radius: 4px;
+    color: variables.$c-teal;
+    font-size: variables.$fs-xs;
+    font-weight: variables.$fw-medium;
+    padding-block: 0.2rem;
+    padding-inline: 0.5rem;
+  }
+
+  &__cta {
+    bottom: 1.5rem;
+    color: var(--c-accent);
+    display: block;
+    font-size: variables.$fs-sm;
+    font-weight: variables.$fw-bold;
+    opacity: 0;
+    position: absolute;
+    right: 1.5rem;
+    transform: translateY(8px);
+    transition:
+      opacity variables.$s-base,
+      transform variables.$s-base;
+    z-index: variables.$z-2;
+  }
+}

@@ -9,14 +9,90 @@ import ContactForm from '../elements/forms/ContactForm.astro';
   <SectionIntro>
     <SectionTitle title="Let's work together" />
     <p class="animate-fade">
-      I'm <strong>actively seeking full-time front-end development opportunities</strong> and am open
-      to contract work that aligns with my expertise. Whether you're hiring, need transcription work,
-      exploring collaboration, or just want to chat—I'd love to connect.
-    </p>
-    <p class="animate-fade">
-      <strong>Quick response guaranteed.</strong> Fill out the form below or reach out directly via email
-      or phone.
+      I'm <strong>actively seeking full-time front-end development opportunities</strong> and open to
+      contract work aligned with my expertise. Fill out the form or reach out directly.
     </p>
   </SectionIntro>
-  <ContactForm />
+  <div class="contact-layout">
+    <div class="contact-layout__form">
+      <ContactForm />
+    </div>
+    <aside class="contact-layout__links animate-slide" aria-label="Contact links and resources">
+      <div class="contact-links">
+        <h3 class="contact-links__heading">Get in touch</h3>
+        <ul class="contact-links__list">
+          <li>
+            <a
+              href="mailto:tomd0627@gmail.com"
+              class="contact-links__item"
+              aria-label="Email Tom DeLuca"
+            >
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span>tomd0627@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="tel:18459872998"
+              class="contact-links__item"
+              aria-label="Call Tom DeLuca at 845-987-2998"
+            >
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              <span>845-987-2998</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/tom-deluca-28613928/"
+              class="contact-links__item"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Tom DeLuca on LinkedIn"
+            >
+              <i class="fab fa-linkedin" aria-hidden="true"></i>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/tomd0627"
+              class="contact-links__item"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Tom DeLuca on GitHub"
+            >
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://codepen.io/tomd0627"
+              class="contact-links__item"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Tom DeLuca on CodePen"
+            >
+              <i class="fab fa-codepen" aria-hidden="true"></i>
+              <span>CodePen</span>
+            </a>
+          </li>
+        </ul>
+
+        <h3 class="contact-links__heading">Resumes</h3>
+        <div class="contact-links__resumes">
+          <a href="/files/Tom_DeLuca_Resume_Front_End.pdf" download class="button button--primary">
+            <i class="fas fa-file-lines" aria-hidden="true"></i> Front-End Resume
+          </a>
+          <a
+            href="/files/Tom_DeLuca_Resume_Office_Clerical.pdf"
+            download
+            class="button button--secondary"
+          >
+            <i class="fas fa-file-lines" aria-hidden="true"></i> Office / Clerical Resume
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
 </Section>

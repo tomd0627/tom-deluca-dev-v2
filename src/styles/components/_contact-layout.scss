@@ -1,0 +1,70 @@
+@use '../base/mixins';
+@use '../settings/variables';
+
+.contact-layout {
+  display: grid;
+  gap: variables.$space-3xl;
+  grid-template-columns: 1fr;
+  margin-block-start: variables.$space-2xl;
+
+  @include mixins.mq-up(large) {
+    grid-template-columns: 1fr 320px;
+    gap: variables.$space-3xl variables.$space-2xl;
+    align-items: start;
+  }
+}
+
+.contact-links {
+  &__heading {
+    color: var(--c-text-bright);
+    font-size: variables.$fs-lg;
+    font-weight: variables.$fw-bold;
+    margin-block: 0 variables.$space-base;
+    margin-inline: 0;
+
+    &:not(:first-child) {
+      margin-block-start: variables.$space-xl;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    align-items: center;
+    color: var(--c-text-base);
+    display: flex;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: color variables.$s-fast;
+
+    i {
+      color: var(--c-accent);
+      flex-shrink: 0;
+      inline-size: 1.2rem;
+      text-align: center;
+    }
+
+    &:hover {
+      color: var(--c-accent);
+    }
+  }
+
+  &__resumes {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$space-base;
+    margin-block-start: variables.$space-base;
+
+    .button {
+      inline-size: 100%;
+      justify-content: flex-start;
+    }
+  }
+}

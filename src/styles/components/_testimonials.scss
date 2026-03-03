@@ -1,0 +1,61 @@
+@use '../base/mixins';
+@use '../settings/variables';
+
+.testimonial-grid {
+  display: grid;
+  gap: variables.$space-xl;
+  grid-template-columns: 1fr;
+  margin-block-start: variables.$space-2xl;
+
+  @include mixins.mq-up(medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.testimonial-card {
+  background: var(--c-bg-secondary);
+  border: 1px solid var(--c-border);
+  border-radius: 0.75rem;
+  margin: 0;
+  padding-block: variables.$space-xl;
+  padding-inline: variables.$space-xl;
+  position: relative;
+
+  &__mark {
+    color: var(--c-accent);
+    display: block;
+    font-family: variables.$ff-heading;
+    font-size: 5rem;
+    line-height: 1;
+    margin-block-end: variables.$space-sm;
+    opacity: 0.5;
+  }
+
+  &__quote {
+    color: var(--c-text-base);
+    font-size: variables.$fs-lg;
+    font-style: italic;
+    line-height: variables.$lh-relaxed;
+    margin-block: 0 variables.$space-lg;
+    margin-inline: 0;
+  }
+
+  &__footer {
+    cite {
+      display: flex;
+      flex-direction: column;
+      font-style: normal;
+      gap: 0.2rem;
+    }
+  }
+
+  &__name {
+    color: var(--c-accent);
+    font-weight: variables.$fw-bold;
+  }
+
+  &__title {
+    color: var(--c-text-muted);
+    font-size: variables.$fs-sm;
+  }
+}
