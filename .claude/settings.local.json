@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install @napi-rs/canvas --save-dev)",
+      "Bash(node scripts/generate-og.mjs)",
+      "Bash(npm uninstall @napi-rs/canvas)"
+    ]
+  }
+}

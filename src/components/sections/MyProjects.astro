@@ -3,6 +3,7 @@ import Section from '../elements/Section.astro';
 import SectionIntro from '../elements/SectionIntro.astro';
 import SectionTitle from '../elements/SectionTitle.astro';
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import imgProjectRapid7 from '../../assets/images/projects/rapid7.png';
 import imgProjectCiga from '../../assets/images/projects/ciga.png';
 import imgProjectCencora from '../../assets/images/projects/cencora.png';
@@ -20,6 +21,7 @@ interface BentoProject {
   alt: string;
   href: string;
   wide?: boolean;
+  full?: boolean;
 }
 
 // TODO (Phase 4): Replace all href values with real client URLs
@@ -30,7 +32,7 @@ const projects: BentoProject[] = [
     tags: ['Optimizely', 'CSS', 'Responsive'],
     image: imgProjectRapid7,
     alt: 'Rapid7 website screenshot',
-    href: '/',
+    href: 'https://www.rapid7.com/',
     wide: true,
   },
   {
@@ -39,7 +41,7 @@ const projects: BentoProject[] = [
     tags: ['React', 'Next.js', 'Tailwind CSS'],
     image: imgProjectCiga,
     alt: 'California Insurance Guarantee Association website screenshot',
-    href: '/',
+    href: 'https://www.ciga.org/',
   },
   {
     name: 'Cencora',
@@ -47,7 +49,7 @@ const projects: BentoProject[] = [
     tags: ['GSAP', 'Storybook', 'Animation'],
     image: imgProjectCencora,
     alt: 'Cencora website screenshot',
-    href: '/',
+    href: 'https://www.cencora.com/',
   },
   {
     name: 'Russell Reynolds',
@@ -55,7 +57,7 @@ const projects: BentoProject[] = [
     tags: ['Sitecore', 'Storybook', 'Design Systems'],
     image: imgProjectRra,
     alt: 'Russell Reynolds Associates website screenshot',
-    href: '/',
+    href: 'https://www.russellreynolds.com/',
     wide: true,
   },
   {
@@ -64,7 +66,7 @@ const projects: BentoProject[] = [
     tags: ['Sitecore', 'CSS', 'QA'],
     image: imgProjectCorbion,
     alt: 'Corbion website screenshot',
-    href: '/',
+    href: 'https://www.corbion.com/',
   },
   {
     name: 'Orco Bank',
@@ -72,7 +74,7 @@ const projects: BentoProject[] = [
     tags: ['Sitecore SXA', 'Migration', 'CSS'],
     image: imgProjectAruba,
     alt: 'Orco Bank website screenshot',
-    href: '/',
+    href: 'https://www.orcobank.com/',
   },
   {
     name: 'AmerisourceBergen',
@@ -80,7 +82,7 @@ const projects: BentoProject[] = [
     tags: ['Rebranding', 'CSS', 'Components'],
     image: imgProjectAb,
     alt: 'AmerisourceBergen website screenshot',
-    href: '/',
+    href: 'https://www.amerisourcebergen.com/',
   },
   {
     name: 'ASH',
@@ -88,7 +90,7 @@ const projects: BentoProject[] = [
     tags: ['HTML', 'CSS', 'Launch'],
     image: imgProjectAsh,
     alt: 'American Society of Hematology website screenshot',
-    href: '/',
+    href: 'https://www.hematology.org/',
     wide: true,
   },
 ];
@@ -107,8 +109,8 @@ const projects: BentoProject[] = [
       projects.map((project) => (
         <a
           href={project.href}
-          class={`project-bento__cell animate-slide${project.wide ? ' project-bento__cell--wide' : ''}`}
-          aria-label={`View ${project.name} project`}
+          class={`project-bento__cell animate-slide${project.wide ? ' project-bento__cell--wide' : ''}${project.full ? ' project-bento__cell--full' : ''}`}
+          aria-label={`View ${project.name} project (opens in new window)`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -134,5 +136,9 @@ const projects: BentoProject[] = [
         </a>
       ))
     }
+    <div class="project-bento__placeholder animate-slide" aria-hidden="true">
+      <span class="project-bento__placeholder-icon">+</span>
+      <p class="project-bento__placeholder-label">More coming soon</p>
+    </div>
   </div>
 </Section>

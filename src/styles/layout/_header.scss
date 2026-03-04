@@ -79,53 +79,12 @@
     }
   }
 
-  // Right-side controls: theme toggle + hamburger
+  // Right-side controls: hamburger only (theme toggle is now a floating FAB)
   &__controls {
     align-items: center;
     display: flex;
     flex-flow: row nowrap;
     gap: 0.75rem;
-  }
-
-  &__theme-toggle {
-    align-items: center;
-    background: none;
-    border: 1px solid var(--c-border);
-    border-radius: 50vw;
-    color: var(--c-text-muted);
-    cursor: pointer;
-    display: flex;
-    block-size: 36px;
-    inline-size: 36px;
-    justify-content: center;
-    padding: 0;
-    transition:
-      border-color variables.$s-fast,
-      color variables.$s-fast;
-
-    &:hover,
-    &:focus-visible {
-      border-color: var(--c-accent);
-      color: var(--c-accent);
-    }
-
-    .icon-sun {
-      display: none;
-    }
-
-    .icon-moon {
-      display: block;
-    }
-
-    [data-theme='light'] & {
-      .icon-sun {
-        display: block;
-      }
-
-      .icon-moon {
-        display: none;
-      }
-    }
   }
 
   &__menu-toggle {
@@ -254,6 +213,107 @@
           }
         }
       }
+    }
+  }
+}
+
+// Floating cursor-toggle button (fixed, bottom-right, stacked above theme toggle)
+.cursor-toggle-fab {
+  align-items: center;
+  background: var(--c-bg-secondary);
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  bottom: 6.5rem;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  display: flex;
+  block-size: 44px;
+  inline-size: 44px;
+  justify-content: center;
+  padding: 0;
+  position: fixed;
+  right: 2rem;
+  transition:
+    background variables.$s-fast,
+    border-color variables.$s-fast,
+    box-shadow variables.$s-fast,
+    color variables.$s-fast,
+    transform variables.$s-fast;
+  z-index: variables.$z-10;
+
+  svg {
+    block-size: 18px;
+    inline-size: 18px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--c-bg-tertiary);
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 4px rgb(94 240 200 / 12%);
+    color: var(--c-accent);
+    transform: scale(1.08);
+  }
+
+  // Dimmed when off
+  &[aria-pressed='false'] {
+    opacity: 0.4;
+  }
+}
+
+// Floating theme-toggle button (fixed, bottom-right)
+.theme-toggle-fab {
+  align-items: center;
+  background: var(--c-bg-secondary);
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  bottom: 2rem;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  display: flex;
+  block-size: 44px;
+  inline-size: 44px;
+  justify-content: center;
+  padding: 0;
+  position: fixed;
+  right: 2rem;
+  transition:
+    background variables.$s-fast,
+    border-color variables.$s-fast,
+    box-shadow variables.$s-fast,
+    color variables.$s-fast,
+    transform variables.$s-fast;
+  z-index: variables.$z-10;
+
+  svg {
+    block-size: 18px;
+    inline-size: 18px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--c-bg-tertiary);
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 4px rgb(94 240 200 / 12%);
+    color: var(--c-accent);
+    transform: scale(1.08);
+  }
+
+  .icon-sun {
+    display: none;
+  }
+
+  .icon-moon {
+    display: block;
+  }
+
+  [data-theme='light'] & {
+    .icon-sun {
+      display: block;
+    }
+
+    .icon-moon {
+      display: none;
     }
   }
 }

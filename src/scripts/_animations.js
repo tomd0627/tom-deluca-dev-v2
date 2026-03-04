@@ -98,11 +98,10 @@ const countUpStats = () => {
 /**
  * Slide animation — improved easing for cards and staggered content.
  */
-const slideAnimation = (
-  slideElements = gsap.utils.toArray('.animate-slide'),
-  staggerVal = 0.1
-) => {
-  if (!slideElements.length) return;
+const slideAnimation = (slideElements = gsap.utils.toArray('.animate-slide'), staggerVal = 0.1) => {
+  if (!slideElements.length) {
+    return;
+  }
 
   gsap.set(slideElements, { opacity: 0, y: 40 });
 
@@ -171,7 +170,9 @@ const fadeAnimation = (
  */
 const parallaxHero = () => {
   const hero = document.querySelector('.section--hero');
-  if (!hero) return;
+  if (!hero) {
+    return;
+  }
 
   gsap.to(hero, {
     backgroundPositionY: '30%',
@@ -202,7 +203,14 @@ export const initializeAnimations = () => {
 
   heroReveal();
   countUpStats();
-  slideAnimation();
+
+  // Bento cells get their own batch so they stagger only among themselves,
+  // row by row, without competing with other sections' animate-slide elements.
+  const bentoCells = gsap.utils.toArray('.project-bento .animate-slide');
+  const otherSlides = gsap.utils.toArray('.animate-slide').filter((el) => !bentoCells.includes(el));
+  slideAnimation(bentoCells);
+  slideAnimation(otherSlides);
+
   fadeAnimation();
   parallaxHero();
 };

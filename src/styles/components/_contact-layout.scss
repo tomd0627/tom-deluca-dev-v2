@@ -51,8 +51,12 @@
       text-align: center;
     }
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: var(--c-accent);
+      outline: 2px solid var(--c-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
     }
   }
 

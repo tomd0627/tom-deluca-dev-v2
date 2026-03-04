@@ -17,6 +17,17 @@
   flex-direction: column;
   gap: 0.25rem;
 
+  &__value {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 4.5rem;
+
+    @include mixins.mq-up(large) {
+      min-height: 5rem;
+    }
+  }
+
   &__number {
     color: var(--c-accent);
     font-family: variables.$ff-heading;
@@ -32,10 +43,9 @@
   &__suffix {
     color: var(--c-accent);
     font-family: variables.$ff-heading;
-    font-size: variables.$fs-4xl;
+    font-size: variables.$fs-5xl;
     font-weight: variables.$fw-extra-bold;
     line-height: 1;
-    vertical-align: super;
   }
 
   &__label {

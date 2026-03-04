@@ -3,12 +3,13 @@ export interface Props {
   quote: string;
   name: string;
   title: string;
+  full?: boolean;
 }
 
-const { quote, name, title } = Astro.props;
+const { quote, name, title, full = false } = Astro.props;
 ---
 
-<blockquote class="testimonial-card animate-slide">
+<blockquote class:list={['testimonial-card animate-slide', { 'testimonial-card--full': full }]}>
   <span class="testimonial-card__mark" aria-hidden="true">&ldquo;</span>
   <p class="testimonial-card__quote">{quote}</p>
   <footer class="testimonial-card__footer">

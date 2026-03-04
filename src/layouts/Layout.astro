@@ -67,7 +67,7 @@ const ogImage = `${siteUrl}/og-image.png`;
         "jobTitle": "Senior Front-End Developer",
         "url": "https://tomdeluca.dev",
         "sameAs": [
-          "https://www.linkedin.com/in/tom-deluca-28613928/",
+          "https://www.linkedin.com/in/tomdeluca/",
           "https://github.com/tomd0627",
           "https://codepen.io/tomd0627"
         ],
@@ -78,8 +78,18 @@ const ogImage = `${siteUrl}/og-image.png`;
           "addressCountry": "US"
         },
         "knowsAbout": [
-          "React", "Angular", "Vue.js", "Next.js", "TypeScript",
-          "GSAP", "Sitecore", "Optimizely", "Tailwind CSS"
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "React",
+          "Angular",
+          "Vue.js",
+          "Next.js",
+          "TypeScript",
+          "GSAP",
+          "Sitecore",
+          "Optimizely",
+          "Tailwind CSS"
         ]
       }
     </script>
@@ -101,10 +111,76 @@ const ogImage = `${siteUrl}/og-image.png`;
   </head>
   <body>
     <Header />
-    <main id="main">
+    <main id="main" tabindex="-1">
       <slot />
     </main>
     <Footer />
+
+    <button
+      class="cursor-toggle-fab"
+      id="cursor-toggle"
+      aria-label="Toggle cursor follower"
+      aria-pressed="false"
+      title="Toggle cursor follower"
+    >
+      <!-- Mouse cursor / pointer icon -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M4 4l7.07 17 2.51-7.39L21 11.07z"></path>
+      </svg>
+    </button>
+
+    <button
+      class="theme-toggle-fab"
+      aria-label="Toggle light/dark theme"
+      id="theme-toggle"
+      title="Toggle light/dark theme"
+    >
+      <!-- Moon icon: shown in dark mode -->
+      <svg
+        class="icon-moon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <!-- Sun icon: shown in light mode -->
+      <svg
+        class="icon-sun"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </button>
 
     <script src="../scripts/index.js"></script>
   </body>

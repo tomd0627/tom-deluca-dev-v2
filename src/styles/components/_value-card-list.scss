@@ -7,6 +7,10 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   margin-block-start: variables.$space-xl;
 
+  @include mixins.mq-up(large) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   @include mixins.mq-down(medium) {
     grid-template-columns: 1fr;
     gap: variables.$space-base;

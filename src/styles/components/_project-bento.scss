@@ -33,7 +33,7 @@
       transform: translateY(-4px);
 
       .project-bento__overlay {
-        opacity: 0.35;
+        opacity: 0.6;
       }
 
       .project-bento__cta {
@@ -48,6 +48,12 @@
         aspect-ratio: auto;
         min-block-size: 280px;
       }
+
+      &--full {
+        grid-column: span 3;
+        aspect-ratio: auto;
+        min-block-size: 280px;
+      }
     }
   }
 
@@ -58,6 +64,7 @@
     object-fit: cover;
     object-position: center top;
     position: absolute;
+    transform: scale(1.1);
     transition: transform variables.$s-slow;
 
     .project-bento__cell:hover & {
@@ -68,14 +75,14 @@
   &__overlay {
     background: linear-gradient(
       to top,
-      rgb(11 22 34 / 90%) 0%,
-      rgb(11 22 34 / 60%) 50%,
-      rgb(11 22 34 / 20%) 100%
+      rgb(11 22 34 / 98%) 0%,
+      rgb(11 22 34 / 80%) 50%,
+      rgb(11 22 34 / 40%) 100%
     );
     block-size: 100%;
     inline-size: 100%;
     inset: 0;
-    opacity: 0.6;
+    opacity: 0.85;
     position: absolute;
     transition: opacity variables.$s-base;
     z-index: variables.$z-1;
@@ -103,12 +110,12 @@
   }
 
   &__challenge {
-    color: variables.$c-text-base;
+    color: variables.$c-text-bright;
     font-size: variables.$fs-sm;
     line-height: variables.$lh-relaxed;
     margin-block: 0 0.75rem;
     margin-inline: 0;
-    opacity: 0.9;
+    opacity: 0.85;
   }
 
   &__tags {
@@ -128,19 +135,77 @@
     padding-inline: 0.5rem;
   }
 
+  &__placeholder {
+    align-items: center;
+    aspect-ratio: 4 / 3;
+    background: var(--c-bg-tertiary);
+    border: 2px dashed rgb(94 240 200 / 25%);
+    border-radius: 0.75rem;
+    color: var(--c-text-muted, rgb(94 240 200 / 50%));
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: center;
+
+    @include mixins.mq-up(medium) {
+      &--wide {
+        aspect-ratio: auto;
+        grid-column: span 2;
+        min-block-size: 280px;
+      }
+    }
+
+    @include mixins.mq-up(large) {
+      &--full {
+        aspect-ratio: auto;
+        grid-column: span 3;
+        min-block-size: 280px;
+      }
+    }
+
+    &-icon {
+      font-size: 2.5rem;
+      font-weight: variables.$fw-bold;
+      line-height: 1;
+    }
+
+    &-label {
+      font-size: variables.$fs-sm;
+      font-weight: variables.$fw-medium;
+      letter-spacing: 0.05em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+  }
+
   &__cta {
+    background: rgb(94 240 200 / 15%);
+    border: 1px solid rgb(94 240 200 / 40%);
+    border-radius: 2rem;
     bottom: 1.5rem;
-    color: var(--c-accent);
+    color: variables.$c-teal;
     display: block;
     font-size: variables.$fs-sm;
     font-weight: variables.$fw-bold;
+    letter-spacing: 0.02em;
     opacity: 0;
+    padding-block: 0.4rem;
+    padding-inline: 1rem;
     position: absolute;
     right: 1.5rem;
     transform: translateY(8px);
     transition:
+      background variables.$s-base,
+      border-color variables.$s-base,
+      color variables.$s-base,
       opacity variables.$s-base,
       transform variables.$s-base;
     z-index: variables.$z-2;
+
+    .project-bento__cell:hover & {
+      background: variables.$c-teal;
+      border-color: variables.$c-teal;
+      color: variables.$c-navy-900;
+    }
   }
 }

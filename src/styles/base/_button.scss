@@ -31,6 +31,19 @@
       border-color: variables.$c-teal;
       color: variables.$c-teal;
     }
+
+    // Light mode: swap to dark accent for readable contrast
+    [data-theme='light'] & {
+      border-color: variables.$c-lt-accent;
+      color: variables.$c-lt-accent;
+
+      &:focus-visible,
+      &:hover {
+        background: rgb(10 122 92 / 8%);
+        border-color: variables.$c-lt-accent;
+        color: variables.$c-lt-accent;
+      }
+    }
   }
 
   // Outline: muted border, text-muted color (tertiary action)

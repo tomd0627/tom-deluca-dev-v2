@@ -10,15 +10,21 @@ import SectionTitle from '../elements/SectionTitle.astro';
   <SectionIntro>
     <SectionTitle title="About me" />
     <p class="animate-fade">
-      Hi, I'm <span class="section__highlight">Tom DeLuca</span> — a senior front-end developer
-      based in Warwick, New York with 10+ years building production web experiences.
+      Hi, I'm <span class="section__highlight">Tom DeLuca</span> — a senior front-end developer based
+      in Warwick, New York with 10+ years building production web experiences.
     </p>
     <p class="animate-fade">
-      I specialize in translating designs into <strong>pixel-perfect, accessible, high-performance
-      interfaces</strong> — from enterprise CMS platforms to modern React/Next.js applications. My
-      stack spans <span class="tech-tag">React</span> <span class="tech-tag">Angular</span>
-      <span class="tech-tag">Sitecore</span> <span class="tech-tag">Optimizely</span>
-      <span class="tech-tag">GSAP</span> and beyond.
+      I specialize in translating designs into <strong
+        >pixel-perfect, accessible, high-performance interfaces</strong
+      > — from enterprise CMS platforms to modern React/Next.js applications. My stack spans <span
+        class="tech-tag">HTML</span
+      >
+      <span class="tech-tag">CSS</span>
+      <span class="tech-tag">JavaScript</span>
+      <span class="tech-tag">React</span>
+      <span class="tech-tag">Angular</span>
+      <span class="tech-tag">Sitecore</span>
+      <span class="tech-tag">Optimizely</span> and beyond.
     </p>
     <p class="animate-fade">
       I thrive in cross-functional teams — working closely with designers, back-end engineers, and
@@ -32,7 +38,9 @@ import SectionTitle from '../elements/SectionTitle.astro';
     </p>
   </SectionIntro>
   <div class="section__image animate-fade">
-    <Image src={imgHeadshot} alt="Tom DeLuca headshot" loading="eager" />
+    <div class="section__image-inner">
+      <Image src={imgHeadshot} alt="Tom DeLuca headshot" loading="eager" />
+    </div>
   </div>
 </Section>
 

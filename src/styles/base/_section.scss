@@ -41,6 +41,10 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+  }
+
+  &__image-inner {
+    display: inline-block;
     position: relative;
 
     &::before {
@@ -51,10 +55,15 @@
       inset: -12px;
       opacity: 0.5;
       position: absolute;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
     }
 
     img {
       border-radius: 50%;
+      display: block;
     }
 
     @keyframes ring-pulse {
@@ -81,23 +90,34 @@
     padding-block: 0;
     position: relative;
 
-    // Animated radial gradient in bg (original, not a copy of any specific portfolio)
+    // Subtle linear gradient overlay left → right
     &::before {
       animation: hero-glow 8s ease-in-out infinite alternate;
-      background:
-        radial-gradient(ellipse 60% 50% at 20% 60%, rgb(94 240 200 / 6%) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 80% 30%, rgb(28 47 74 / 80%) 0%, transparent 60%);
+      background: linear-gradient(to right, rgb(94 240 200 / 6%) 0%, transparent 60%);
       content: '';
       inset: 0;
       pointer-events: none;
       position: absolute;
       will-change: opacity;
       z-index: variables.$z-0;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+
+    [data-theme='light'] &::before {
+      background: linear-gradient(to right, rgb(10 122 92 / 7%) 0%, transparent 55%);
     }
 
     @keyframes hero-glow {
-      from { opacity: 0.7; }
-      to   { opacity: 1; }
+      from {
+        opacity: 0.7;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .hero {
@@ -183,9 +203,19 @@
         margin-block-start: variables.$space-2xl;
         opacity: 0.6;
 
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
+        }
+
         @keyframes scroll-bounce {
-          0%, 100% { transform: translateY(0); }
-          50%       { transform: translateY(8px); }
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(8px);
+          }
         }
       }
     }

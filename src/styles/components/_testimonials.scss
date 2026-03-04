@@ -21,6 +21,12 @@
   padding-inline: variables.$space-xl;
   position: relative;
 
+  &--full {
+    @include mixins.mq-up(medium) {
+      grid-column: 1 / -1;
+    }
+  }
+
   &__mark {
     color: var(--c-accent);
     display: block;
