@@ -260,6 +260,10 @@
   &[aria-pressed='false'] {
     opacity: 0.4;
   }
+
+  @media (hover: none) {
+    display: none;
+  }
 }
 
 // Floating theme-toggle button (fixed, bottom-right)
