@@ -90,6 +90,10 @@
     padding-block: 0;
     position: relative;
 
+    @include mixins.mq-up(x-large) {
+      min-block-size: 70dvh;
+    }
+
     // Subtle linear gradient overlay left → right
     &::before {
       animation: hero-glow 8s ease-in-out infinite alternate;
@@ -133,6 +137,10 @@
 
       @include mixins.mq-up(large) {
         padding-block: 10rem variables.$space-3xl;
+      }
+
+      @include mixins.mq-up(x-large) {
+        min-block-size: 70dvh;
       }
 
       &__eyebrow {

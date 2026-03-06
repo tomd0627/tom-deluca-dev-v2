@@ -21,9 +21,10 @@
     background: rgb(246 248 252 / 85%);
   }
 
-  .body-scroll-down & {
-    transform: translateY(-100%);
-  }
+  // Hide header on scroll down
+  // .body-scroll-down & {
+  //   transform: translateY(-100%);
+  // }
 
   a {
     color: var(--c-text-base);
@@ -146,7 +147,7 @@
     transition: max-block-size variables.$s-base;
 
     .show-nav & {
-      max-block-size: 24rem;
+      max-block-size: 100dvh;
     }
 
     @include mixins.mq-up(large) {

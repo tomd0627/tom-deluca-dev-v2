@@ -1,50 +1,57 @@
 ---
 import Section from '../elements/Section.astro';
+import SectionIntro from '../elements/SectionIntro.astro';
+import SectionTitle from '../elements/SectionTitle.astro';
 import ValueCard from '../elements/ValueCard.astro';
 ---
 
 <Section cssClass="section--value" title="value">
-  <h2 class="visually-hidden">Value proposition</h2>
+  <SectionIntro>
+    <SectionTitle title="My values" />
+    <p class="animate-fade">
+      The principles that guide how I work — from first commit to final launch.
+    </p>
+  </SectionIntro>
   <div class="value-grid">
     <ValueCard icon="rocket" title="Rapid Development">
       <p>
-        I deliver quality code quickly, meeting tight deadlines without sacrificing performance or
-        accessibility.
+        Tight deadlines are the norm in enterprise work. I write fast, but I don't cut corners — the
+        output is clean, tested, and ready to ship.
       </p>
     </ValueCard>
 
     <ValueCard icon="cogs" title="Enterprise Experience">
       <p>
-        Proven work with Fortune 500 platforms including Sitecore, Optimizely, and modern
-        React-based applications.
+        I've built for the big names — Fortune 500 brands, global banks, pharma companies — using
+        Sitecore, Optimizely, and custom React apps.
       </p>
     </ValueCard>
 
     <ValueCard icon="users" title="Team Collaboration">
       <p>
-        Excellent communicator who works seamlessly with designers, developers, and cross-functional
-        teams.
+        I speak designer and I speak developer. I ask good questions, document my work, and don't
+        leave teammates guessing.
       </p>
     </ValueCard>
 
     <ValueCard icon="lightbulb" title="Tech Stack Versatility">
       <p>
-        Quickly adapt to new frameworks and tools. Proficient in React, Angular, Vue, and modern
-        development practices.
+        I've shipped in React, Angular, Vue, Svelte, and whatever else the project called for. New
+        tools don't slow me down.
       </p>
     </ValueCard>
 
     <ValueCard icon="chart-line" title="Business Impact">
       <p>
-        Focus on delivering results that matter: performance optimization, user experience, and
-        successful launches.
+        Better Lighthouse scores, smoother UX, faster launches — I keep the bigger picture in mind
+        when writing code.
       </p>
     </ValueCard>
 
     <ValueCard icon="star" title="Reliability">
       <p>
-        Dependable professional with strong work ethic, attention to detail, and commitment to code
-        quality.
+        I show up, I follow through, and I take pride in the work. If I say it'll be done, it'll be
+        done.
       </p>
     </ValueCard>
   </div>
