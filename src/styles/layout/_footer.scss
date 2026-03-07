@@ -16,11 +16,7 @@
       align-items: center;
       flex-flow: row nowrap;
       gap: 0;
-      text-align: left;
-
-      [dir='rtl'] & {
-        text-align: right;
-      }
+      text-align: start;
     }
   }
 
@@ -102,11 +98,7 @@
 
   &__tagline {
     @include mixins.mq-up(large) {
-      text-align: right;
-
-      [dir='rtl'] & {
-        text-align: left;
-      }
+      text-align: end;
     }
 
     .fa-solid {

@@ -21,10 +21,10 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    min-height: 4.5rem;
+    min-block-size: 4.5rem;
 
     @include mixins.mq-up(large) {
-      min-height: 5rem;
+      min-block-size: 5rem;
     }
   }
 

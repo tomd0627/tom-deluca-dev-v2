@@ -182,7 +182,7 @@
     background: rgb(94 240 200 / 15%);
     border: 1px solid rgb(94 240 200 / 40%);
     border-radius: 2rem;
-    bottom: 1.5rem;
+    inset-block-end: 1.5rem;
     color: variables.$c-teal;
     display: block;
     font-size: variables.$fs-sm;
@@ -192,7 +192,7 @@
     padding-block: 0.4rem;
     padding-inline: 1rem;
     position: absolute;
-    right: 1.5rem;
+    inset-inline-end: 1.5rem;
     transform: translateY(8px);
     transition:
       background variables.$s-base,

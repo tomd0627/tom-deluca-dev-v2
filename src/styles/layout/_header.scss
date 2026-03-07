@@ -195,7 +195,7 @@
               background: var(--c-accent);
               block-size: 1px;
               border-radius: 1px;
-              bottom: -2px;
+              inset-block-end: -2px;
               content: '';
               display: block;
               inset-inline-start: 0;
@@ -218,22 +218,21 @@
   }
 }
 
-// Floating cursor-toggle button (fixed, bottom-right, stacked above theme toggle)
-.cursor-toggle-fab {
+// Shared FAB base (fixed, bottom-right)
+%fab {
   align-items: center;
   background: var(--c-bg-secondary);
   border: 1px solid var(--c-border);
   border-radius: 50%;
-  bottom: 6.5rem;
+  block-size: 44px;
   color: var(--c-text-muted);
   cursor: pointer;
   display: flex;
-  block-size: 44px;
   inline-size: 44px;
   justify-content: center;
   padding: 0;
   position: fixed;
-  right: 2rem;
+  inset-inline-end: 2rem;
   transition:
     background variables.$s-fast,
     border-color variables.$s-fast,
@@ -255,8 +254,14 @@
     color: var(--c-accent);
     transform: scale(1.08);
   }
+}
 
-  // Dimmed when off
+// Floating cursor-toggle button (stacked above theme toggle)
+.cursor-toggle-fab {
+  @extend %fab;
+
+  inset-block-end: 6rem;
+
   &[aria-pressed='false'] {
     opacity: 0.4;
   }
@@ -266,43 +271,11 @@
   }
 }
 
-// Floating theme-toggle button (fixed, bottom-right)
+// Floating theme-toggle button
 .theme-toggle-fab {
-  align-items: center;
-  background: var(--c-bg-secondary);
-  border: 1px solid var(--c-border);
-  border-radius: 50%;
-  bottom: 2rem;
-  color: var(--c-text-muted);
-  cursor: pointer;
-  display: flex;
-  block-size: 44px;
-  inline-size: 44px;
-  justify-content: center;
-  padding: 0;
-  position: fixed;
-  right: 2rem;
-  transition:
-    background variables.$s-fast,
-    border-color variables.$s-fast,
-    box-shadow variables.$s-fast,
-    color variables.$s-fast,
-    transform variables.$s-fast;
-  z-index: variables.$z-10;
+  @extend %fab;
 
-  svg {
-    block-size: 18px;
-    inline-size: 18px;
-  }
-
-  &:hover,
-  &:focus-visible {
-    background: var(--c-bg-tertiary);
-    border-color: var(--c-accent);
-    box-shadow: 0 0 0 4px rgb(94 240 200 / 12%);
-    color: var(--c-accent);
-    transform: scale(1.08);
-  }
+  inset-block-end: 2rem;
 
   .icon-sun {
     display: none;
