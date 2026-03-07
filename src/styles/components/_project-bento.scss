@@ -43,16 +43,17 @@
     }
 
     @include mixins.mq-up(medium) {
+      aspect-ratio: auto;
+      min-block-size: 280px;
+    }
+
+    @include mixins.mq-up(large) {
       &--wide {
         grid-column: span 2;
-        aspect-ratio: auto;
-        min-block-size: 280px;
       }
 
       &--full {
         grid-column: span 3;
-        aspect-ratio: auto;
-        min-block-size: 280px;
       }
     }
   }
@@ -148,19 +149,13 @@
     justify-content: center;
 
     @include mixins.mq-up(medium) {
-      &--wide {
-        aspect-ratio: auto;
-        grid-column: span 2;
-        min-block-size: 280px;
-      }
+      aspect-ratio: auto;
+      grid-column: var(--placeholder-col-md, span 2);
+      min-block-size: 280px;
     }
 
     @include mixins.mq-up(large) {
-      &--full {
-        aspect-ratio: auto;
-        grid-column: span 3;
-        min-block-size: 280px;
-      }
+      grid-column: var(--placeholder-col-lg, span 1);
     }
 
     &-icon {
@@ -179,6 +174,10 @@
   }
 
   &__cta {
+    @include mixins.mq-up(large) {
+      display: block;
+    }
+
     background: rgb(94 240 200 / 15%);
     border: 1px solid rgb(94 240 200 / 40%);
     border-radius: 2rem;

@@ -94,6 +94,16 @@ const projects: BentoProject[] = [
     wide: true,
   },
 ];
+
+// Compute placeholder grid-column spans so it always fills the remaining
+// columns at each breakpoint — no orphans regardless of project count.
+const totalSpansMd = projects.length; // all cells are span 1 at medium
+const remainderMd = totalSpansMd % 2;
+const placeholderSpanMd = remainderMd === 0 ? 2 : 1;
+
+const totalSpansLg = projects.reduce((acc, p) => acc + (p.full ? 3 : p.wide ? 2 : 1), 0);
+const remainderLg = totalSpansLg % 3;
+const placeholderSpanLg = remainderLg === 0 ? 3 : 3 - remainderLg;
 ---
 
 <Section cssClass="section--projects" title="projects">
@@ -133,7 +143,11 @@ const projects: BentoProject[] = [
         </a>
       ))
     }
-    <div class="project-bento__placeholder animate-slide" aria-hidden="true">
+    <div
+      class="project-bento__placeholder animate-slide"
+      aria-hidden="true"
+      style={`--placeholder-col-md: span ${placeholderSpanMd}; --placeholder-col-lg: span ${placeholderSpanLg};`}
+    >
       <span class="project-bento__placeholder-icon">+</span>
       <p class="project-bento__placeholder-label">More coming soon</p>
     </div>

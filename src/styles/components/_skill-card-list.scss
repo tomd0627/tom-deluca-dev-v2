@@ -6,7 +6,7 @@
   gap: variables.$space-xl;
   grid-template-columns: 1fr;
 
-  @include mixins.mq-up(medium) {
+  @include mixins.mq-up(large) {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 
