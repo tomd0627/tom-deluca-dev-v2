@@ -27,7 +27,7 @@ const ogImage = `${siteUrl}/og-image.png`;
 
     <!-- Canonical -->
     <link rel="canonical" href={siteUrl} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" id="site-favicon" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -105,6 +105,10 @@ const ogImage = `${siteUrl}/og-image.png`;
         var theme = stored || (prefersDark ? 'dark' : 'light');
         if (theme === 'light') {
           document.documentElement.setAttribute('data-theme', 'light');
+        }
+        if (stored) {
+          var favicon = document.getElementById('site-favicon');
+          if (favicon) favicon.href = '/favicon-' + theme + '.svg';
         }
       })();
     </script>

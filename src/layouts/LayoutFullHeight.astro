@@ -18,7 +18,7 @@ import '../styles/styles.scss';
     <meta charset="UTF-8" />
     <meta name="description" content=`${description}` />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" id="site-favicon" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script src="https://kit.fontawesome.com/4050a399d8.js" crossorigin="anonymous" is:inline
@@ -31,6 +31,10 @@ import '../styles/styles.scss';
         var theme = stored || (prefersDark ? 'dark' : 'light');
         if (theme === 'light') {
           document.documentElement.setAttribute('data-theme', 'light');
+        }
+        if (stored) {
+          var favicon = document.getElementById('site-favicon');
+          if (favicon) favicon.href = '/favicon-' + theme + '.svg';
         }
       })();
     </script>
