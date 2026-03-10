@@ -18,7 +18,11 @@ export const initializeUtills = () => {
     prevScrollpos = currentScrollPos;
   };
 
-  document.addEventListener('scroll', () => {
-    scrollBody();
-  });
+  document.addEventListener(
+    'scroll',
+    () => {
+      scrollBody();
+    },
+    { passive: true }
+  );
 };

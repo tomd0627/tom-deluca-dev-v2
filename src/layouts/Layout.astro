@@ -46,15 +46,24 @@ const ogImage = `${siteUrl}/og-image.png`;
 
     <title>{title}</title>
 
-    <!-- Google Fonts: Inter + Plus Jakarta Sans (preconnect avoids render-blocking) -->
+    <!-- Google Fonts: Inter + Plus Jakarta Sans (non-render-blocking via media swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- Font Awesome -->
+    <link rel="preconnect" href="https://kit.fontawesome.com" crossorigin />
     <script src="https://kit.fontawesome.com/4050a399d8.js" crossorigin="anonymous" defer is:inline
     ></script>
 

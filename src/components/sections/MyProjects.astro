@@ -126,6 +126,8 @@ const placeholderSpanLg = remainderLg === 0 ? 3 : 3 - remainderLg;
             alt={project.alt}
             loading="lazy"
             class="project-bento__image"
+            widths={[400, 700, 1000]}
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           />
           <div class="project-bento__overlay" aria-hidden="true" />
           <div class="project-bento__content">

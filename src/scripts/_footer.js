@@ -8,6 +8,6 @@ export const initializeFooter = () => {
     const year = date.getFullYear();
     const copyrightYear = document.querySelector('.footer__copyright-year');
 
-    copyrightYear.innerHTML = year;
+    copyrightYear.textContent = year;
   }
 };
