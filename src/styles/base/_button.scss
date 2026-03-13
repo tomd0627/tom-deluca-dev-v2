@@ -27,7 +27,7 @@
 
     &:focus-visible,
     &:hover {
-      background: rgb(94 240 200 / 10%);
+      background: rgba(variables.$c-teal, 0.1);
       border-color: variables.$c-teal;
       color: variables.$c-teal;
     }
@@ -39,7 +39,7 @@
 
       &:focus-visible,
       &:hover {
-        background: rgb(10 122 92 / 8%);
+        background: rgba(variables.$c-lt-accent, 0.08);
         border-color: variables.$c-lt-accent;
         color: variables.$c-lt-accent;
       }
@@ -54,7 +54,7 @@
 
     &:focus-visible,
     &:hover {
-      background: rgb(94 240 200 / 8%);
+      background: rgba(variables.$c-teal, 0.08);
       border-color: variables.$c-teal;
       color: variables.$c-teal;
     }

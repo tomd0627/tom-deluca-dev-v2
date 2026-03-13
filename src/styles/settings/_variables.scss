@@ -37,62 +37,60 @@ $c-lt-text-muted: #5c7190;
 $c-error-dark: #ff6b6b; // error on dark bg (AAA on navy)
 $c-error-light: #c0392b; // error on light bg
 
-// ============================================================
-// Legacy aliases — referenced by _mixins.scss and components
-// not yet migrated to CSS custom properties. Remove after Phase 2.
-// ============================================================
+// Used as default parameter values in _mixins.scss button mixin
 $c-white: #fff;
 $c-black: #1a1a1a;
-$c-black-50: rgba($c-black, 0.5);
-$c-off-white: #f5f5f5;
-$c-dark-blue: $c-navy-800;   // maps to new navy
-$c-orange: $c-teal;        // placeholder — components will be rewritten in Phase 2
-$c-muted: $c-text-muted;  // maps to new muted text token
-$c-muted-2: $c-text-muted;
-$c-red: $c-error-dark;
 
 // CSS Custom Properties — runtime theme values
 :root {
-  --c-bg-primary:   #{$c-navy-900};
+  --c-bg-primary: #{$c-navy-900};
   --c-bg-secondary: #{$c-navy-800};
-  --c-bg-tertiary:  #{$c-navy-700};
-  --c-accent:       #{$c-teal};
+  --c-bg-tertiary: #{$c-navy-700};
+  --c-accent: #{$c-teal};
   --c-accent-hover: #{$c-teal-dim};
-  --c-text-bright:  #{$c-text-bright};
-  --c-text-base:    #{$c-text-base};
-  --c-text-muted:   #{$c-text-muted};
-  --c-border:       rgb(94 240 200 / 15%);
-  --c-error:        #{$c-error-dark};
+  --c-text-bright: #{$c-text-bright};
+  --c-text-base: #{$c-text-base};
+  --c-text-muted: #{$c-text-muted};
+  --c-border: rgb(94 240 200 / 15%);
+  --c-error: #{$c-error-dark};
 
   // Form-specific tokens (bg-primary won't work for the transparent input border on dark)
   --c-input-border: #{$c-text-muted};
-  --c-input-text:   #{$c-text-base};
-  --c-label-text:   #{$c-text-base};
-  --c-form-line:    #{$c-teal};
+  --c-input-text: #{$c-text-base};
+  --c-label-text: #{$c-text-base};
+  --c-form-line: #{$c-teal};
 }
 
 [data-theme='light'] {
-  --c-bg-primary:   #{$c-lt-bg-primary};
+  --c-bg-primary: #{$c-lt-bg-primary};
   --c-bg-secondary: #{$c-lt-bg-secondary};
-  --c-bg-tertiary:  #{$c-lt-bg-tertiary};
-  --c-accent:       #{$c-lt-accent};
+  --c-bg-tertiary: #{$c-lt-bg-tertiary};
+  --c-accent: #{$c-lt-accent};
   --c-accent-hover: #{$c-lt-accent-hover};
-  --c-text-bright:  #{$c-lt-text-primary};
-  --c-text-base:    #{$c-lt-text-secondary};
-  --c-text-muted:   #{$c-lt-text-muted};
-  --c-border:       rgb(10 122 92 / 20%);
-  --c-error:        #{$c-error-light};
+  --c-text-bright: #{$c-lt-text-primary};
+  --c-text-base: #{$c-lt-text-secondary};
+  --c-text-muted: #{$c-lt-text-muted};
+  --c-border: rgb(10 122 92 / 20%);
+  --c-error: #{$c-error-light};
   --c-input-border: #{$c-lt-text-secondary};
-  --c-input-text:   #{$c-lt-text-primary};
-  --c-label-text:   #{$c-lt-text-secondary};
-  --c-form-line:    #{$c-lt-accent};
+  --c-input-text: #{$c-lt-text-primary};
+  --c-label-text: #{$c-lt-text-secondary};
+  --c-form-line: #{$c-lt-accent};
 }
 
 // ============================================================
 // Typography
 // ============================================================
-$ff-body: 'Inter', system-ui, -apple-system, sans-serif;
-$ff-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+$ff-body:
+  'Inter',
+  system-ui,
+  -apple-system,
+  sans-serif;
+$ff-heading:
+  'Plus Jakarta Sans',
+  system-ui,
+  -apple-system,
+  sans-serif;
 $ff-mono: 'Courier New', Courier, monospace;
 
 // Font Weights
@@ -102,16 +100,16 @@ $fw-bold: 700;
 $fw-extra-bold: 800;
 
 // Typography Scale
-$fs-xs: 0.75rem;  // 12px
+$fs-xs: 0.75rem; // 12px
 $fs-sm: 0.875rem; // 14px
-$fs-base: 1rem;    // 16px
+$fs-base: 1rem; // 16px
 $fs-lg: 1.125rem; // 18px
-$fs-xl: 1.25rem;  // 20px
-$fs-2xl: 1.5rem;   // 24px
-$fs-3xl: 2rem;     // 32px
-$fs-4xl: 2.5rem;   // 40px
-$fs-5xl: 3.5rem;   // 56px
-$fs-6xl: 5rem;     // 80px — hero headline (large screens)
+$fs-xl: 1.25rem; // 20px
+$fs-2xl: 1.5rem; // 24px
+$fs-3xl: 2rem; // 32px
+$fs-4xl: 2.5rem; // 40px
+$fs-5xl: 3.5rem; // 56px
+$fs-6xl: 5rem; // 80px — hero headline (large screens)
 
 // Line Heights
 $lh-tight: 1.2;

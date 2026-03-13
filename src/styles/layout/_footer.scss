@@ -53,46 +53,9 @@
   }
 
   &__copyright,
-  &__links,
   &__tagline {
     @include mixins.mq-up(large) {
       flex: 1 0 33.33%;
-    }
-  }
-
-  &__links {
-    margin-block: 0.75rem 0;
-    margin-inline: 0;
-    order: -1;
-
-    @include mixins.mq-up(large) {
-      margin-block: 0;
-      margin-inline: 0;
-      order: 0;
-      text-align: center;
-    }
-
-    a {
-      color: var(--c-text-muted);
-      font-size: 1.4rem;
-      margin-block: 0;
-      margin-inline: 0.65rem;
-      transition: color variables.$s-fast;
-
-      &:hover {
-        color: var(--c-accent);
-      }
-
-      .fa-brands {
-        transition: transform variables.$s-base;
-      }
-
-      &:focus-visible,
-      &:hover {
-        .fa-brands {
-          transform: scale(1.2);
-        }
-      }
     }
   }
 
@@ -101,8 +64,8 @@
       text-align: end;
     }
 
-    .fa-solid {
-      color: #ff6b6b;
+    svg {
+      color: variables.$c-error-dark;
     }
   }
 }

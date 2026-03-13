@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 export interface Props {
   name: string;
   cssClass: string;
@@ -13,7 +15,7 @@ const { name, cssClass, icon } = Astro.props;
   role="article"
   aria-label={`${name} skill`}
 >
-  <i class=`skill-card-list__item__icon fa-solid fa-${icon}` aria-hidden="true"></i>
+  <Icon name={icon} class="skill-card-list__item__icon" />
   <h3>{name}</h3>
   <slot />
 </div>

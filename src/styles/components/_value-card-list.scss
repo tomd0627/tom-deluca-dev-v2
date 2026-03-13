@@ -12,8 +12,8 @@
   }
 
   @include mixins.mq-down(medium) {
-    grid-template-columns: 1fr;
     gap: variables.$space-base;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -30,7 +30,7 @@
     transform variables.$s-base;
 
   &:hover {
-    border-color: rgb(94 240 200 / 40%);
+    border-color: rgba(variables.$c-teal, 0.4);
     box-shadow: variables.$shadow-teal;
     transform: translateY(-4px);
   }
@@ -53,10 +53,10 @@
 
   &__icon {
     align-items: center;
-    block-size: 48px;
+    block-size: 3rem;
     color: var(--c-accent);
     display: flex;
-    font-size: 2rem;
+    font-size: variables.$fs-3xl;
     inline-size: auto;
     justify-content: center;
     line-height: 1;

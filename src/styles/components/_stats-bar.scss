@@ -15,7 +15,7 @@
 .stat-item {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: variables.$space-xs;
 
   &__value {
     align-items: center;

@@ -1,5 +1,6 @@
 ---
 import Section from '../elements/Section.astro';
+import Icon from '../elements/Icon.astro';
 ---
 
 <Section cssClass="section--hero" title="hero">
@@ -17,10 +18,10 @@ import Section from '../elements/Section.astro';
     </p>
     <div class="hero__ctas">
       <a href="#contact" class="button button--large button--primary">
-        <i class="fas fa-envelope" aria-hidden="true"></i> Let's work together
+        <Icon name="envelope" /> Let's work together
       </a>
       <a href="#projects" class="button button--large button--secondary">
-        <i class="fas fa-arrow-down" aria-hidden="true"></i> View my work
+        <Icon name="arrow-down" /> View my work
       </a>
     </div>
     <div class="hero__scroll-indicator" aria-hidden="true">

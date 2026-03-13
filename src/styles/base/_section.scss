@@ -52,7 +52,7 @@
       border: 2px dashed var(--c-accent);
       border-radius: 50%;
       content: '';
-      inset: -12px;
+      inset: -0.75rem;
       opacity: 0.5;
       position: absolute;
 
@@ -97,7 +97,7 @@
     // Subtle linear gradient overlay left → right
     &::before {
       animation: hero-glow 8s ease-in-out infinite alternate;
-      background: linear-gradient(to right, rgb(94 240 200 / 6%) 0%, transparent 60%);
+      background: linear-gradient(to right, rgba(variables.$c-teal, 0.06) 0%, transparent 60%);
       content: '';
       inset: 0;
       pointer-events: none;
@@ -111,7 +111,7 @@
     }
 
     [data-theme='light'] &::before {
-      background: linear-gradient(to right, rgb(10 122 92 / 7%) 0%, transparent 55%);
+      background: linear-gradient(to right, rgba(variables.$c-lt-accent, 0.07) 0%, transparent 55%);
     }
 
     @keyframes hero-glow {
@@ -204,10 +204,10 @@
 
       &__scroll-indicator {
         animation: scroll-bounce 2s ease-in-out infinite;
-        block-size: 32px;
+        block-size: variables.$space-xl;
         color: var(--c-text-muted);
+        inline-size: variables.$space-xl;
         inset-block-end: variables.$space-xl;
-        inline-size: 32px;
         margin-block-start: variables.$space-2xl;
         opacity: 0.6;
 
@@ -305,11 +305,4 @@
     flex-flow: column nowrap;
     justify-content: center;
   }
-}
-
-.line-divider {
-  border: none;
-  border-block-start: 1px solid var(--c-border);
-  margin-block: variables.$space-lg;
-  margin-inline: 0;
 }

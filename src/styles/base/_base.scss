@@ -113,20 +113,6 @@ img {
   }
 }
 
-.hide-mobile {
-  display: none;
-
-  @include mixins.mq-up(large) {
-    display: inline;
-  }
-}
-
-.hide-desktop {
-  @include mixins.mq-up(large) {
-    display: none;
-  }
-}
-
 .visually-hidden {
   block-size: 0;
   inline-size: 0;
@@ -140,9 +126,9 @@ img {
 // ============================================================
 .cursor-follower {
   background: var(--c-accent);
-  block-size: 14px;
+  block-size: 0.875rem;
   border-radius: 50%;
-  inline-size: 14px;
+  inline-size: 0.875rem;
   mix-blend-mode: difference;
   opacity: 0.6;
   pointer-events: none;

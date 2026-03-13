@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 export interface Props {
   icon: string;
   title: string;
@@ -9,7 +11,7 @@ const { icon, title } = Astro.props;
 
 <div class="value-card animate-slide">
   <div class="value-card__icon">
-    <i class=`fas fa-${icon}` aria-hidden="true"></i>
+    <Icon name={icon} />
   </div>
   <h3>{title}</h3>
   <slot />

@@ -48,47 +48,6 @@
   }
 }
 
-// Text color split
-@mixin text-color-split(
-  $width: 125px,
-  $color1: variables.$c-black,
-  $color2: variables.$c-white,
-  $dir: 125deg
-) {
-  background: linear-gradient($dir, $color1 $width, $color2 $width);
-  display: inline-block;
-  position: relative;
-
-  &::before {
-    background: $color1;
-    block-size: 100%;
-    content: '';
-    display: block;
-    inset-inline: -100vw 100%;
-    position: absolute;
-    z-index: variables.$z-0;
-  }
-
-  > * {
-    background: linear-gradient($dir, $color2 $width, $color1 $width);
-    background-clip: text;
-    margin: 0;
-    padding: 1rem 1rem 1rem 0;
-    position: relative;
-    -webkit-text-fill-color: transparent;
-    z-index: variables.$z-1;
-  }
-
-  [dir='rtl'] & {
-    background: linear-gradient((-$dir), $color1 $width, $color2 $width);
-
-    > * {
-      background: linear-gradient((-$dir), $color2 $width, $color1 $width);
-      background-clip: text;
-    }
-  }
-}
-
 // Button
 @mixin button($bg: variables.$c-white, $fg: variables.$c-black) {
   align-items: center;

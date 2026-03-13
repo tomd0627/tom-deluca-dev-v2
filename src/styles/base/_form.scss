@@ -82,8 +82,8 @@
     }
 
     &--textarea {
-      font-family: variables.$ff-body;
       block-size: auto;
+      font-family: variables.$ff-body;
       min-block-size: 10rem;
       resize: none;
     }
@@ -99,8 +99,8 @@
     background: var(--c-form-line);
     block-size: 2px;
     border-radius: 1px;
-    inset-block-end: 0;
     inline-size: 0;
+    inset-block-end: 0;
     position: absolute;
     transition: inline-size variables.$s-base;
   }

@@ -76,9 +76,9 @@
   &__overlay {
     background: linear-gradient(
       to top,
-      rgb(11 22 34 / 98%) 0%,
-      rgb(11 22 34 / 80%) 50%,
-      rgb(11 22 34 / 40%) 100%
+      rgba(variables.$c-navy-900, 0.98) 0%,
+      rgba(variables.$c-navy-900, 0.8) 50%,
+      rgba(variables.$c-navy-900, 0.4) 100%
     );
     block-size: 100%;
     inline-size: 100%;
@@ -126,9 +126,9 @@
   }
 
   &__tag {
-    background: rgb(94 240 200 / 15%);
-    border: 1px solid rgb(94 240 200 / 30%);
-    border-radius: 4px;
+    background: rgba(variables.$c-teal, 0.15);
+    border: 1px solid rgba(variables.$c-teal, 0.3);
+    border-radius: 0.25rem;
     color: variables.$c-teal;
     font-size: variables.$fs-xs;
     font-weight: variables.$fw-medium;
@@ -140,9 +140,9 @@
     align-items: center;
     aspect-ratio: 4 / 3;
     background: var(--c-bg-tertiary);
-    border: 2px dashed rgb(94 240 200 / 25%);
+    border: 2px dashed rgba(variables.$c-teal, 0.25);
     border-radius: 0.75rem;
-    color: var(--c-text-muted, rgb(94 240 200 / 50%));
+    color: var(--c-text-muted, rgba(variables.$c-teal, 0.5));
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -159,7 +159,7 @@
     }
 
     &-icon {
-      font-size: 2.5rem;
+      font-size: variables.$fs-4xl;
       font-weight: variables.$fw-bold;
       line-height: 1;
     }
@@ -178,20 +178,20 @@
       display: block;
     }
 
-    background: rgb(94 240 200 / 15%);
-    border: 1px solid rgb(94 240 200 / 40%);
+    background: rgba(variables.$c-teal, 0.15);
+    border: 1px solid rgba(variables.$c-teal, 0.4);
     border-radius: 2rem;
-    inset-block-end: 1.5rem;
     color: variables.$c-teal;
     display: block;
     font-size: variables.$fs-sm;
     font-weight: variables.$fw-bold;
+    inset-block-end: 1.5rem;
+    inset-inline-end: 1.5rem;
     letter-spacing: 0.02em;
     opacity: 0;
     padding-block: 0.4rem;
     padding-inline: 1rem;
     position: absolute;
-    inset-inline-end: 1.5rem;
     transform: translateY(8px);
     transition:
       background variables.$s-base,

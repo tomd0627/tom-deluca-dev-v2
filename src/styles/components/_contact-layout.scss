@@ -8,9 +8,9 @@
   margin-block-start: variables.$space-2xl;
 
   @include mixins.mq-up(large) {
-    grid-template-columns: 1fr 320px;
-    gap: variables.$space-3xl variables.$space-2xl;
     align-items: start;
+    gap: variables.$space-3xl variables.$space-2xl;
+    grid-template-columns: 1fr 320px;
   }
 }
 
@@ -53,10 +53,10 @@
 
     &:hover,
     &:focus-visible {
+      border-radius: 0.125rem;
       color: var(--c-accent);
       outline: 2px solid var(--c-accent);
       outline-offset: 3px;
-      border-radius: 2px;
     }
   }
 
