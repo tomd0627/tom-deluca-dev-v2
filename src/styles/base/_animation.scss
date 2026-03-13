@@ -8,3 +8,8 @@
     opacity: 1;
   }
 }
+
+.animate-slide {
+  opacity: 0;
+  transform: translateY(40px);
+}

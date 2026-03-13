@@ -3,7 +3,6 @@ import { initializeFooter } from './_footer';
 import { initializeHeader } from './_header';
 import { initializeUtills } from './_utils';
 import { initializeSmoothScroll } from './_smoothScroll';
-import { initializeFormValidation } from './_formValidation';
 import { initializeThemeToggle } from './_theme-toggle';
 import { initializeCursor } from './_cursor';
 
@@ -16,5 +15,9 @@ export const initialize = () => {
   initializeHeader();
   initializeFooter();
   initializeAnimations();
-  initializeFormValidation('.form');
+  if (document.querySelector('.form')) {
+    import('./_formValidation').then(({ initializeFormValidation }) => {
+      initializeFormValidation('.form');
+    });
+  }
 };

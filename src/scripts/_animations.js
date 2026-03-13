@@ -103,8 +103,6 @@ const slideAnimation = (slideElements = gsap.utils.toArray('.animate-slide'), st
     return;
   }
 
-  gsap.set(slideElements, { opacity: 0, y: 40 });
-
   ScrollTrigger.batch(slideElements, {
     start: 'top 88%',
     onEnter: (els) =>

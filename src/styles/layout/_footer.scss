@@ -29,11 +29,10 @@
 
     a {
       color: var(--c-accent);
-      text-decoration: none;
+      text-decoration: underline;
 
       &:hover {
         color: var(--c-accent-hover);
-        text-decoration: underline;
       }
     }
 
