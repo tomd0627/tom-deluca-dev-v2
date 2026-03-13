@@ -150,6 +150,7 @@
         letter-spacing: 0.15em;
         margin-block: 0 variables.$space-lg;
         margin-inline: 0;
+        opacity: 0;
         text-transform: uppercase;
       }
 
@@ -161,6 +162,10 @@
         margin-block: 0 variables.$space-xl;
         margin-inline: 0;
         overflow: hidden;
+
+        .word {
+          opacity: 0;
+        }
 
         @include mixins.mq-up(large) {
           font-size: variables.$fs-6xl;
@@ -179,6 +184,7 @@
         margin-block: 0 variables.$space-2xl;
         margin-inline: auto;
         max-inline-size: 55ch;
+        opacity: 0;
 
         @include mixins.mq-down(medium) {
           font-size: variables.$fs-lg;
@@ -192,6 +198,10 @@
         justify-content: center;
         margin-block: 0;
         margin-inline: 0;
+
+        a {
+          opacity: 0;
+        }
 
         @include mixins.mq-down(medium) {
           flex-direction: column;
@@ -209,7 +219,7 @@
         inline-size: variables.$space-xl;
         inset-block-end: variables.$space-xl;
         margin-block-start: variables.$space-2xl;
-        opacity: 0.6;
+        opacity: 0;
 
         @media (prefers-reduced-motion: reduce) {
           animation: none;

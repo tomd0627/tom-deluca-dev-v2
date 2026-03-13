@@ -10,51 +10,33 @@ gsap.registerPlugin(ScrollTrigger);
 const heroReveal = () => {
   const tl = gsap.timeline();
 
-  tl.from('.hero__eyebrow', {
-    y: 20,
-    opacity: 0,
-    duration: 0.5,
-    ease: 'power3.out',
-  })
-    .from(
+  tl.fromTo(
+    '.hero__eyebrow',
+    { y: 20, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }
+  )
+    .fromTo(
       '.hero__title .word',
-      {
-        y: 40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power3.out',
-      },
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power3.out' },
       '-=0.3'
     )
-    .from(
+    .fromTo(
       '.hero__subtitle',
-      {
-        y: 20,
-        opacity: 0,
-        duration: 0.5,
-        ease: 'power3.out',
-      },
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' },
       '-=0.35'
     )
-    .from(
+    .fromTo(
       '.hero__ctas a',
-      {
-        y: 15,
-        opacity: 0,
-        duration: 0.45,
-        stagger: 0.1,
-        ease: 'power2.out',
-      },
+      { y: 15, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.45, stagger: 0.1, ease: 'power2.out' },
       '-=0.35'
     )
-    .from(
+    .fromTo(
       '.hero__scroll-indicator',
-      {
-        opacity: 0,
-        duration: 0.35,
-        ease: 'power2.out',
-      },
+      { opacity: 0 },
+      { opacity: 0.6, duration: 0.35, ease: 'power2.out' },
       '-=0.15'
     );
 };
@@ -172,6 +154,15 @@ export const initializeAnimations = () => {
     document.querySelectorAll('.animate-fade').forEach((el) => {
       el.classList.add('active');
     });
+    document
+      .querySelectorAll('.hero__eyebrow, .hero__title .word, .hero__subtitle, .hero__ctas a')
+      .forEach((el) => {
+        el.style.opacity = '1';
+      });
+    const scrollIndicator = document.querySelector('.hero__scroll-indicator');
+    if (scrollIndicator) {
+      scrollIndicator.style.opacity = '0.6';
+    }
     return;
   }
 

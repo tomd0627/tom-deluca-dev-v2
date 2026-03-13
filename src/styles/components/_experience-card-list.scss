@@ -81,6 +81,11 @@
     margin-inline: 0;
   }
 
+  &__content {
+    margin-block: variables.$space-lg 0;
+    margin-inline: 0;
+  }
+
   &__highlights {
     list-style: none;
     margin-block: 0;
