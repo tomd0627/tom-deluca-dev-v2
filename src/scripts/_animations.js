@@ -8,21 +8,21 @@ gsap.registerPlugin(ScrollTrigger);
  * Targets .word spans inside .hero__title, plus eyebrow, subtitle, and CTAs.
  */
 const heroReveal = () => {
-  const tl = gsap.timeline({ delay: 0.2 });
+  const tl = gsap.timeline();
 
   tl.from('.hero__eyebrow', {
-    y: 30,
+    y: 20,
     opacity: 0,
-    duration: 0.7,
+    duration: 0.5,
     ease: 'power3.out',
   })
     .from(
       '.hero__title .word',
       {
-        y: 60,
+        y: 40,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 0.6,
+        stagger: 0.08,
         ease: 'power3.out',
       },
       '-=0.3'
@@ -30,32 +30,32 @@ const heroReveal = () => {
     .from(
       '.hero__subtitle',
       {
-        y: 30,
+        y: 20,
         opacity: 0,
-        duration: 0.7,
+        duration: 0.5,
         ease: 'power3.out',
       },
-      '-=0.4'
+      '-=0.35'
     )
     .from(
       '.hero__ctas a',
       {
-        y: 20,
+        y: 15,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.12,
+        duration: 0.45,
+        stagger: 0.1,
         ease: 'power2.out',
       },
-      '-=0.4'
+      '-=0.35'
     )
     .from(
       '.hero__scroll-indicator',
       {
         opacity: 0,
-        duration: 0.5,
+        duration: 0.35,
         ease: 'power2.out',
       },
-      '-=0.2'
+      '-=0.15'
     );
 };
 
@@ -82,7 +82,7 @@ const countUpStats = () => {
             duration: 1.8,
             ease: 'power2.out',
             snap: { textContent: 1 },
-            onUpdate: function () {
+            onUpdate: () => {
               counter.textContent = Math.round(parseFloat(counter.textContent));
             },
             onComplete: () => {
@@ -160,30 +160,6 @@ const fadeAnimation = (
   });
 };
 
-/**
- * Parallax hero background — pseudo-element gradient moves at 30% scroll rate.
- * Note: GSAP cannot directly animate pseudo-elements. This animates a data
- * attribute instead, and the CSS uses it via a custom property workaround.
- * As a practical alternative we animate the hero section's background-position.
- */
-const parallaxHero = () => {
-  const hero = document.querySelector('.section--hero');
-  if (!hero) {
-    return;
-  }
-
-  gsap.to(hero, {
-    backgroundPositionY: '30%',
-    ease: 'none',
-    scrollTrigger: {
-      trigger: hero,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-    },
-  });
-};
-
 export const initializeAnimations = () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -210,5 +186,4 @@ export const initializeAnimations = () => {
   slideAnimation(otherSlides);
 
   fadeAnimation();
-  parallaxHero();
 };
