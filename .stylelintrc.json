@@ -1,5 +1,6 @@
 {
   "extends": "stylelint-config-standard-scss",
+  "plugins": ["stylelint-order", "stylelint-use-logical"],
   "rules": {
     "scss/at-extend-no-missing-placeholder": null,
     "scss/no-global-function-names": null,
@@ -13,6 +14,13 @@
       true,
       {
         "ignorePseudoClasses": ["deep", "global"]
+      }
+    ],
+    "order/properties-alphabetical-order": true,
+    "csstools/use-logical": [
+      "always",
+      {
+        "except": ["float", "clear", "resize", "text-align", "caption-side"]
       }
     ]
   }
