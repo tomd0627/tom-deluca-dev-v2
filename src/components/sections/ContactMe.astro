@@ -24,22 +24,27 @@ import Icon from '../elements/Icon.astro';
         <ul class="contact-links__list">
           <li>
             <a
-              href="mailto:tomd0627@gmail.com"
+              id="contact-email"
+              href="#"
               class="contact-links__item"
               aria-label="Email Tom DeLuca"
+              data-v="dG9tZDA2MjdAZ21haWwuY29t"
             >
               <Icon name="envelope" />
-              <span>tomd0627@gmail.com</span>
+              <span id="contact-email-text"></span>
             </a>
           </li>
           <li>
             <a
-              href="tel:18459872998"
+              id="contact-phone"
+              href="#"
               class="contact-links__item"
-              aria-label="Call Tom DeLuca at 845-987-2998"
+              aria-label="Call Tom DeLuca"
+              data-v="ODQ1LTk4Ny0yOTk4"
+              data-t="MTg0NTk4NzI5OTg="
             >
               <Icon name="phone" />
-              <span>845-987-2998</span>
+              <span id="contact-phone-text"></span>
             </a>
           </li>
           <li>
@@ -101,3 +106,21 @@ import Icon from '../elements/Icon.astro';
     </aside>
   </div>
 </Section>
+
+<script>
+  const emailEl = document.getElementById('contact-email') as HTMLAnchorElement | null;
+  const phoneEl = document.getElementById('contact-phone') as HTMLAnchorElement | null;
+  const emailText = document.getElementById('contact-email-text');
+  const phoneText = document.getElementById('contact-phone-text');
+  if (emailEl?.dataset.v && emailText) {
+    const e = atob(emailEl.dataset.v);
+    emailEl.href = 'mailto:' + e;
+    emailText.textContent = e;
+  }
+  if (phoneEl?.dataset.v && phoneEl.dataset.t && phoneText) {
+    const p = atob(phoneEl.dataset.v);
+    const t = atob(phoneEl.dataset.t);
+    phoneEl.href = 'tel:' + t;
+    phoneText.textContent = p;
+  }
+</script>
