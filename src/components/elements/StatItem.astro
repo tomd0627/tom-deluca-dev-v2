@@ -9,7 +9,7 @@ const { value, suffix = '+', label } = Astro.props;
 ---
 
 <div class="stat-item animate-slide">
-  <div class="stat-item__value" aria-label={`${value}${suffix}`}>
+  <div class="stat-item__value" role="img" aria-label={`${value}${suffix}`}>
     <span class="stat-item__number" data-target={value} aria-hidden="true">0</span><span
       class="stat-item__suffix"
       aria-hidden="true">{suffix}</span
