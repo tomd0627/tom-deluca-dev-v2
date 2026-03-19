@@ -78,6 +78,7 @@ export default [
         setInterval: 'readonly',
         clearTimeout: 'readonly',
         clearInterval: 'readonly',
+        URLSearchParams: 'readonly',
       },
     },
     rules: {

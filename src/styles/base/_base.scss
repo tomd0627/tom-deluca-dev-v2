@@ -76,6 +76,12 @@ a {
   &:hover {
     color: var(--c-accent-hover);
   }
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+  }
 }
 
 img {

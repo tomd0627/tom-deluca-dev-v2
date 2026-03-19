@@ -147,6 +147,7 @@
         color: var(--c-accent);
         font-family: variables.$ff-mono;
         font-size: variables.$fs-base;
+        font-weight: variables.$fw-medium;
         letter-spacing: 0.15em;
         margin-block: 0 variables.$space-lg;
         margin-inline: 0;
@@ -181,13 +182,41 @@
         font-size: variables.$fs-xl;
         font-weight: variables.$fw-normal;
         line-height: variables.$lh-relaxed;
-        margin-block: 0 variables.$space-2xl;
+        margin-block: 0 variables.$space-lg;
         margin-inline: auto;
         max-inline-size: 55ch;
         opacity: 0;
 
         @include mixins.mq-down(medium) {
           font-size: variables.$fs-lg;
+        }
+      }
+
+      &__tech-stack {
+        display: flex;
+        flex-flow: row wrap;
+        gap: variables.$space-sm;
+        justify-content: center;
+        list-style: none;
+        margin-block: 0 variables.$space-2xl;
+        margin-inline: 0;
+        opacity: 0;
+        padding: 0;
+
+        li {
+          background: rgb(94 240 200 / 8%);
+          border: 1px solid rgb(94 240 200 / 20%);
+          border-radius: 9999px;
+          color: var(--c-text-base);
+          font-family: variables.$ff-mono;
+          font-size: variables.$fs-sm;
+          padding-block: 0.25rem;
+          padding-inline: 0.75rem;
+        }
+
+        [data-theme='light'] & li {
+          background: rgb(10 122 92 / 6%);
+          border-color: rgb(10 122 92 / 20%);
         }
       }
 
@@ -215,7 +244,7 @@
       &__scroll-indicator {
         animation: scroll-bounce 2s ease-in-out infinite;
         block-size: variables.$space-xl;
-        color: var(--c-text-muted);
+        color: var(--c-text-base);
         inline-size: variables.$space-xl;
         inset-block-end: variables.$space-xl;
         margin-block-start: variables.$space-2xl;

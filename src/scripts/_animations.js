@@ -28,6 +28,12 @@ const heroReveal = () => {
       '-=0.35'
     )
     .fromTo(
+      '.hero__tech-stack',
+      { y: 15, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' },
+      '-=0.25'
+    )
+    .fromTo(
       '.hero__ctas a',
       { y: 15, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.45, stagger: 0.1, ease: 'power2.out' },
@@ -36,7 +42,7 @@ const heroReveal = () => {
     .fromTo(
       '.hero__scroll-indicator',
       { opacity: 0 },
-      { opacity: 0.6, duration: 0.35, ease: 'power2.out' },
+      { opacity: 1, duration: 0.35, ease: 'power2.out' },
       '-=0.15'
     );
 };
@@ -144,8 +150,9 @@ const fadeAnimation = (
 
 export const initializeAnimations = () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const screenshotMode = new URLSearchParams(window.location.search).has('screenshot');
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || screenshotMode) {
     // Make all animated elements immediately visible — no motion
     document.querySelectorAll('.animate-slide').forEach((el) => {
       el.style.opacity = '1';
@@ -155,13 +162,15 @@ export const initializeAnimations = () => {
       el.classList.add('active');
     });
     document
-      .querySelectorAll('.hero__eyebrow, .hero__title .word, .hero__subtitle, .hero__ctas a')
+      .querySelectorAll(
+        '.hero__eyebrow, .hero__title .word, .hero__subtitle, .hero__tech-stack, .hero__ctas a'
+      )
       .forEach((el) => {
         el.style.opacity = '1';
       });
     const scrollIndicator = document.querySelector('.hero__scroll-indicator');
     if (scrollIndicator) {
-      scrollIndicator.style.opacity = '0.6';
+      scrollIndicator.style.opacity = '1';
     }
     return;
   }
