@@ -1,0 +1,127 @@
+@use '../base/mixins';
+@use '../settings/variables';
+
+.personal-project-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin-block-start: variables.$space-xl;
+  padding: 0;
+
+  @include mixins.mq-up(medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mixins.mq-up(large) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.personal-project-card {
+  block-size: 100%;
+
+  &__link {
+    background: var(--c-bg-secondary);
+    block-size: 100%;
+    border: 1px solid var(--c-border);
+    border-block-start: 3px solid var(--c-violet);
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-block-size: 220px;
+    padding: variables.$space-lg;
+    text-decoration: none;
+    transition:
+      box-shadow variables.$s-base,
+      transform variables.$s-base;
+
+    &:focus-visible,
+    &:hover {
+      box-shadow: 0 8px 24px rgba(variables.$c-violet, 0.15);
+      outline-offset: 3px;
+      transform: translateY(-4px);
+
+      .personal-project-card__cta {
+        background: var(--c-violet);
+        border-color: var(--c-violet);
+        color: variables.$c-white;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-violet);
+    }
+  }
+
+  &__number {
+    color: var(--c-violet);
+    display: block;
+    font-family: variables.$ff-mono;
+    font-size: variables.$fs-xs;
+    font-weight: variables.$fw-bold;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+  }
+
+  &__name {
+    color: var(--c-text-bright);
+    font-size: variables.$fs-lg;
+    font-weight: variables.$fw-bold;
+    line-height: variables.$lh-snug;
+    margin: 0;
+  }
+
+  &__description {
+    color: var(--c-text-base);
+    flex: 1;
+    font-size: variables.$fs-sm;
+    line-height: variables.$lh-relaxed;
+    margin: 0;
+  }
+
+  &__footer {
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: space-between;
+    margin-block-start: auto;
+  }
+
+  &__tags {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.4rem;
+  }
+
+  &__tag {
+    background: rgba(variables.$c-violet, 0.12);
+    border: 1px solid rgba(variables.$c-violet, 0.3);
+    border-radius: 0.25rem;
+    color: var(--c-violet);
+    font-size: variables.$fs-xs;
+    font-weight: variables.$fw-medium;
+    padding-block: 0.2rem;
+    padding-inline: 0.5rem;
+  }
+
+  &__cta {
+    border: 1px solid var(--c-violet);
+    border-radius: 2rem;
+    color: var(--c-violet);
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: variables.$fs-xs;
+    font-weight: variables.$fw-bold;
+    letter-spacing: 0.02em;
+    padding-block: 0.3rem;
+    padding-inline: 0.875rem;
+    transition:
+      background variables.$s-base,
+      border-color variables.$s-base,
+      color variables.$s-base;
+    white-space: nowrap;
+  }
+}

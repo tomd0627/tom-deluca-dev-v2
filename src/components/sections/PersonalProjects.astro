@@ -1,0 +1,126 @@
+---
+import Section from '../elements/Section.astro';
+import SectionIntro from '../elements/SectionIntro.astro';
+import SectionTitle from '../elements/SectionTitle.astro';
+
+interface PersonalProject {
+  name: string;
+  description: string;
+  tags: string[];
+  href: string;
+}
+
+const projects: PersonalProject[] = [
+  {
+    name: 'GSAP Scroll Experience',
+    description:
+      'A dramatic scroll-based storytelling experience — parallax, pinned sections, SVG path drawing, and number count-ups.',
+    tags: ['GSAP', 'ScrollTrigger', 'CSS', 'Performance'],
+    href: 'https://tomdeluca-gsap.netlify.app/',
+  },
+  {
+    name: 'Component Playground',
+    description:
+      'A public-facing component library with polished, accessible UI components — animated accordions, modals, and scroll-triggered reveals.',
+    tags: ['React', 'Storybook', 'GSAP', 'Accessibility'],
+    href: 'https://tomdeluca-components.netlify.app/',
+  },
+  {
+    name: 'Accessibility Demo',
+    description:
+      'Side-by-side broken vs. fixed examples of common WCAG failures — color contrast, ARIA roles, focus traps, and keyboard navigation.',
+    tags: ['WCAG 2.1', 'ARIA', 'Keyboard Nav', 'HTML'],
+    href: 'https://tomdeluca-ally.netlify.app/',
+  },
+  {
+    name: 'Headless CMS Blog',
+    description:
+      'A Next.js blog pulling from a headless CMS, built for perfect Lighthouse scores with documented architecture decisions.',
+    tags: ['Next.js', 'Sanity', 'SEO', 'Performance'],
+    href: 'https://tomdeluca-blog.netlify.app/',
+  },
+  {
+    name: 'AI UI Roaster',
+    description:
+      'Upload a screenshot and get a sharp, AI-powered critique of your UI — a focused, single-interaction tool with a polished interface.',
+    tags: ['React', 'Claude API', 'Product Thinking'],
+    href: 'https://tomdeluca-roaster.netlify.app/',
+  },
+  {
+    name: 'CSS Explainer',
+    description:
+      'Paste any CSS snippet and get a plain-English explanation of what it does — bridging the gap between code and concept.',
+    tags: ['React', 'AI API', 'Modern Tooling'],
+    href: 'https://tomdeluca-explainer.netlify.app/',
+  },
+  {
+    name: 'Performance Case Study',
+    description:
+      'Before-and-after Lighthouse score documentation with annotated screenshots and plain-language explanations of each optimization.',
+    tags: ['Core Web Vitals', 'Optimization', 'Performance'],
+    href: 'https://tomdeluca-performance.netlify.app/',
+  },
+  {
+    name: 'MJML Email System',
+    description:
+      'A set of responsive, cross-client email templates — newsletter, transactional, and promotional — with a documented MJML workflow.',
+    tags: ['MJML', 'HTML Email', 'Cross-client'],
+    href: 'https://tomdeluca-mjml.netlify.app/',
+  },
+  {
+    name: 'Resonance',
+    description:
+      'A design-forward audio visualizer experiment exploring the intersection of sound, motion, and visual design.',
+    tags: ['Canvas API', 'Web Audio', 'Animation'],
+    href: 'https://tomdeluca-resonance.netlify.app/',
+  },
+  {
+    name: 'Daily Lift',
+    description:
+      'A clean, mobile-first fitness tracker UI — workout logging, progress views, and a polished component-driven interface.',
+    tags: ['React', 'UI Design', 'Mobile-first'],
+    href: 'https://tomdeluca-dailylift.netlify.app/',
+  },
+];
+---
+
+<Section cssClass="section--personal-projects" title="personal-projects">
+  <SectionIntro>
+    <SectionTitle title="Personal projects" />
+    <p class="animate-fade">
+      Side projects I built outside of client work — each one picked to demonstrate a specific
+      skill, not just list it.
+    </p>
+  </SectionIntro>
+  <ol class="personal-project-grid" role="list">
+    {
+      projects.map((project, i) => (
+        <li class="personal-project-card animate-slide">
+          <a
+            href={project.href}
+            class="personal-project-card__link"
+            aria-label={`View ${project.name} (opens in new window)`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="personal-project-card__number" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="personal-project-card__name">{project.name}</h3>
+            <p class="personal-project-card__description">{project.description}</p>
+            <div class="personal-project-card__footer">
+              <div class="personal-project-card__tags" aria-label="Technologies">
+                {project.tags.map((tag) => (
+                  <span class="personal-project-card__tag">{tag}</span>
+                ))}
+              </div>
+              <span class="personal-project-card__cta" aria-hidden="true">
+                Visit site →
+              </span>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</Section>

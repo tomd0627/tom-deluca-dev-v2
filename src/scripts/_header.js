@@ -61,11 +61,14 @@ export const initializeHeader = () => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            menuLinks.forEach((link) => link.classList.remove('active'));
-            const selector = `.header__nav__anchor[href="#${entry.target.id}"]`;
+            const navId = entry.target.id === 'personal-projects' ? 'projects' : entry.target.id;
+            const selector = `.header__nav__anchor[href="#${navId}"]`;
             const activeLink = document.querySelector(selector);
 
             if (activeLink) {
+              menuLinks.forEach((link) => {
+                link.classList.remove('active');
+              });
               activeLink.classList.add('active');
             }
           }
