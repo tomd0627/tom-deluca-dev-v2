@@ -8,16 +8,52 @@ interface PersonalProject {
   description: string;
   tags: string[];
   href: string;
+  featured?: boolean;
 }
 
 const projects: PersonalProject[] = [
+  // --- Anchor projects (featured) ---
   {
     name: 'GSAP Scroll Experience',
     description:
       'A scroll-driven explainer visualizing the scale of the internet — built to push the limits of GSAP ScrollTrigger with live counters, pinned sections, parallax layers, and SVG animations.',
     tags: ['GSAP', 'ScrollTrigger', 'CSS', 'Performance'],
     href: 'https://tomdeluca-gsap.netlify.app/',
+    featured: true,
   },
+  {
+    name: 'Performance Case Study',
+    description:
+      'A before-and-after demo using a fictional coffee shop site — 8 documented optimizations that took a Lighthouse score from 23 to 98 and cut page weight by 95%.',
+    tags: ['Core Web Vitals', 'Optimization', 'Performance'],
+    href: 'https://tomdeluca-performance.netlify.app/',
+    featured: true,
+  },
+  {
+    name: 'Accessibility Demo',
+    description:
+      'Side-by-side broken vs. fixed examples of common WCAG failures — built to make the invisible visible and give developers a practical reference for getting it right.',
+    tags: ['WCAG 2.1', 'ARIA', 'Keyboard Nav', 'HTML'],
+    href: 'https://tomdeluca-ally.netlify.app/',
+    featured: true,
+  },
+  {
+    name: 'UI Roaster',
+    description:
+      'Upload a screenshot and get a sharp, AI-powered critique of your UI — built to give designers and developers instant, actionable feedback on their interfaces.',
+    tags: ['Claude API', 'Product Thinking'],
+    href: 'https://tomdeluca-roaster.netlify.app/',
+    featured: true,
+  },
+  {
+    name: 'Chromatic',
+    description:
+      'A visual impairment simulator overlaying 9 conditions onto a deliberately broken product UI — built to make accessibility failures tangible for developers who have never experienced them firsthand, with a live audit panel mapping each issue to a WCAG criterion and a concrete CSS fix.',
+    tags: ['Canvas API', 'SVG Filters', 'WCAG', 'Accessibility'],
+    href: 'https://tomdeluca-chromatic.netlify.app/',
+    featured: true,
+  },
+  // --- Supporting projects ---
   {
     name: 'Component Playground',
     description:
@@ -26,88 +62,11 @@ const projects: PersonalProject[] = [
     href: 'https://tomdeluca-components.netlify.app/',
   },
   {
-    name: 'Accessibility Demo',
-    description:
-      'Side-by-side broken vs. fixed examples of common WCAG failures — built to make the invisible visible and give developers a practical reference for getting it right.',
-    tags: ['WCAG 2.1', 'ARIA', 'Keyboard Nav', 'HTML'],
-    href: 'https://tomdeluca-ally.netlify.app/',
-  },
-  {
-    name: 'Headless CMS Blog',
-    description:
-      'A Next.js blog pulling from a headless Sanity CMS — built to explore what a real-world headless setup looks like end to end, with perfect Lighthouse scores and documented architecture decisions.',
-    tags: ['Next.js', 'Sanity', 'SEO', 'Performance'],
-    href: 'https://tomdeluca-blog.netlify.app/',
-  },
-  {
-    name: 'UI Roaster',
-    description:
-      'Upload a screenshot and get a sharp, AI-powered critique of your UI — built to give designers and developers instant, actionable feedback on their interfaces.',
-    tags: ['Claude API', 'Product Thinking'],
-    href: 'https://tomdeluca-roaster.netlify.app/',
-  },
-  {
-    name: 'CSS Explainer',
-    description:
-      'Paste any CSS and get a plain-English breakdown of what it does — plus a modernized rewrite using current best practices.',
-    tags: ['Claude API', 'Modern Tooling'],
-    href: 'https://tomdeluca-explainer.netlify.app/',
-  },
-  {
-    name: 'Performance Case Study',
-    description:
-      'A before-and-after demo using a fictional coffee shop site — 8 documented optimizations that took a Lighthouse score from 23 to 98 and cut page weight by 95%.',
-    tags: ['Core Web Vitals', 'Optimization', 'Performance'],
-    href: 'https://tomdeluca-performance.netlify.app/',
-  },
-  {
-    name: 'MJML Email System',
-    description:
-      'A reusable email template system covering newsletter, transactional, and promotional formats — built for reliable cross-client rendering with a documented MJML workflow.',
-    tags: ['MJML', 'HTML Email', 'Cross-client'],
-    href: 'https://tomdeluca-mjml.netlify.app/',
-  },
-  {
-    name: 'Resonance',
-    description:
-      "An audio visualizer built to explore what's possible when real-time Web Audio frequency analysis drives canvas animations — where sound shapes the visual in real time.",
-    tags: ['Canvas API', 'Web Audio', 'Animation'],
-    href: 'https://tomdeluca-resonance.netlify.app/',
-  },
-  {
-    name: 'DailyLift',
-    description:
-      'A mood-based affirmation app — built to practice mobile-first design and warm, human-centered UI thinking with React.',
-    tags: ['React', 'UI Design', 'Mobile-first'],
-    href: 'https://tomdeluca-dailylift.netlify.app/',
-  },
-  {
-    name: 'HistoriCache',
-    description:
-      'Geocaching for historical sites — exploring GPS proximity detection, interactive map clustering, and user-generated content with Next.js and Supabase.',
-    tags: ['Next.js', 'Supabase', 'React Leaflet', 'GPS'],
-    href: 'https://tomdeluca-historicache.netlify.app/',
-  },
-  {
-    name: 'Chromatic',
-    description:
-      'A visual impairment simulator overlaying 9 conditions onto a deliberately broken product UI — built to make accessibility failures tangible for developers who have never experienced them firsthand, with a live audit panel mapping each issue to a WCAG criterion and a concrete CSS fix.',
-    tags: ['Canvas API', 'SVG Filters', 'WCAG', 'Accessibility'],
-    href: 'https://tomdeluca-chromatic.netlify.app/',
-  },
-  {
     name: 'Pulse Analytics',
     description:
       'A SaaS analytics dashboard with animated KPI cards, interactive charts, and skeleton loading states — built to explore what accessible, production-grade data visualization actually looks like end to end.',
     tags: ['Next.js', 'Recharts', 'Framer Motion', 'Data Viz'],
     href: 'https://tomdeluca-data.netlify.app/',
-  },
-  {
-    name: 'Skeleton Loading Patterns',
-    description:
-      'Ten production-ready skeleton loading patterns — from blog cards to data tables to chat feeds — built to explore why skeleton screens feel faster than spinners at identical latency, and how matching dimensions prevents cumulative layout shift.',
-    tags: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Performance'],
-    href: 'https://tomdeluca-skeleton.netlify.app/',
   },
   {
     name: 'i18n Demo',
@@ -124,6 +83,55 @@ const projects: PersonalProject[] = [
     href: 'https://tomdeluca-pipeline.netlify.app/',
   },
   {
+    name: 'Resonance',
+    description:
+      "An audio visualizer built to explore what's possible when real-time Web Audio frequency analysis drives canvas animations — where sound shapes the visual in real time.",
+    tags: ['Canvas API', 'Web Audio', 'Animation'],
+    href: 'https://tomdeluca-resonance.netlify.app/',
+  },
+  {
+    name: 'HistoriCache',
+    description:
+      'Geocaching for historical sites — exploring GPS proximity detection, interactive map clustering, and user-generated content with Next.js and Supabase.',
+    tags: ['Next.js', 'Supabase', 'React Leaflet', 'GPS'],
+    href: 'https://tomdeluca-historicache.netlify.app/',
+  },
+  {
+    name: 'Headless CMS Blog',
+    description:
+      'A Next.js blog pulling from a headless Sanity CMS — built to explore what a real-world headless setup looks like end to end, with perfect Lighthouse scores and documented architecture decisions.',
+    tags: ['Next.js', 'Sanity', 'SEO', 'Performance'],
+    href: 'https://tomdeluca-blog.netlify.app/',
+  },
+  {
+    name: 'CSS Explainer',
+    description:
+      'Paste any CSS and get a plain-English breakdown of what it does — plus a modernized rewrite using current best practices.',
+    tags: ['Claude API', 'Modern Tooling'],
+    href: 'https://tomdeluca-explainer.netlify.app/',
+  },
+  {
+    name: 'MJML Email System',
+    description:
+      'A reusable email template system covering newsletter, transactional, and promotional formats — built for reliable cross-client rendering with a documented MJML workflow.',
+    tags: ['MJML', 'HTML Email', 'Cross-client'],
+    href: 'https://tomdeluca-mjml.netlify.app/',
+  },
+  {
+    name: 'DailyLift',
+    description:
+      'A mood-based affirmation app — built to practice mobile-first design and warm, human-centered UI thinking with React.',
+    tags: ['React', 'UI Design', 'Mobile-first'],
+    href: 'https://tomdeluca-dailylift.netlify.app/',
+  },
+  {
+    name: 'Skeleton Loading Patterns',
+    description:
+      'Ten production-ready skeleton loading patterns — from blog cards to data tables to chat feeds — built to explore why skeleton screens feel faster than spinners at identical latency, and how matching dimensions prevents cumulative layout shift.',
+    tags: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Performance'],
+    href: 'https://tomdeluca-skeleton.netlify.app/',
+  },
+  {
     name: 'Multi-Step Form',
     description:
       'A multi-step form built to explore progressive disclosure and per-step validation — understanding how breaking a long form into focused sequential steps reduces drop-off without losing state between screens.',
@@ -138,6 +146,9 @@ const projects: PersonalProject[] = [
     href: 'https://tomdeluca-dependency.netlify.app/',
   },
 ];
+
+const featured = projects.filter((p) => p.featured);
+const secondary = projects.filter((p) => !p.featured);
 ---
 
 <Section cssClass="section--personal-projects" title="personal-projects">
@@ -150,7 +161,7 @@ const projects: PersonalProject[] = [
   </SectionIntro>
   <ol class="personal-project-grid" role="list">
     {
-      projects.map((project, i) => (
+      featured.map((project, i) => (
         <li class="personal-project-card animate-slide">
           <a
             href={project.href}
@@ -179,4 +190,42 @@ const projects: PersonalProject[] = [
       ))
     }
   </ol>
+  <details class="personal-projects-more">
+    <summary class="personal-projects-more__summary">
+      <span class="personal-projects-more__label--closed">{secondary.length} more projects</span>
+      <span class="personal-projects-more__label--open">Show less</span>
+      <span class="personal-projects-more__chevron" aria-hidden="true">▾</span>
+    </summary>
+    <ol class="personal-projects-more__grid" role="list">
+      {
+        secondary.map((project, i) => (
+          <li class="personal-project-card animate-slide">
+            <a
+              href={project.href}
+              class="personal-project-card__link"
+              aria-label={`View ${project.name} (opens in new window)`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="personal-project-card__number" aria-hidden="true">
+                {String(featured.length + i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="personal-project-card__name">{project.name}</h3>
+              <p class="personal-project-card__description">{project.description}</p>
+              <div class="personal-project-card__footer">
+                <div class="personal-project-card__tags" aria-label="Technologies">
+                  {project.tags.map((tag) => (
+                    <span class="personal-project-card__tag">{tag}</span>
+                  ))}
+                </div>
+                <span class="personal-project-card__cta" aria-hidden="true">
+                  Visit site →
+                </span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </details>
 </Section>
