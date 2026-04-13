@@ -12,7 +12,7 @@ jobs:
     
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [22.x]
     
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +27,7 @@ jobs:
         run: npm ci
       
       - name: Run ESLint
-        run: npx eslint . --ext .js,.ts,.astro
+        run: npx eslint .
         continue-on-error: true
       
       - name: Run Stylelint
