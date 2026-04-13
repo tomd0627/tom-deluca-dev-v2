@@ -186,4 +186,14 @@ export const initializeAnimations = () => {
   slideAnimation(otherSlides);
 
   fadeAnimation();
+
+  // When the "X more projects" drawer opens, the hidden cards had stale
+  // scroll positions (getBoundingClientRect returns 0 while closed).
+  // Refresh all triggers after layout so ScrollTrigger tracks the real positions.
+  const moreProjectsDetails = document.querySelector('.personal-projects-more');
+  if (moreProjectsDetails) {
+    moreProjectsDetails.addEventListener('toggle', () => {
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+  }
 };
