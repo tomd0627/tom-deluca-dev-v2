@@ -46,6 +46,14 @@ const projects: PersonalProject[] = [
     featured: true,
   },
   {
+    name: 'PR Review Bot',
+    description:
+      'Paste a GitHub pull request diff and get an AI code review flagging accessibility regressions, missing ARIA attributes, color contrast failures, and performance pitfalls — built to give your PR the senior a11y reviewer your team might not have on call.',
+    tags: ['Claude API', 'WCAG', 'Accessibility', 'Code Review'],
+    href: 'https://tomdeluca-pr.netlify.app/',
+    featured: true,
+  },
+  {
     name: 'Chromatic',
     description:
       'A visual impairment simulator overlaying 9 conditions onto a deliberately broken product UI — built to make accessibility failures tangible for developers who have never experienced them firsthand, with a live audit panel mapping each issue to a WCAG criterion and a concrete CSS fix.',
@@ -54,6 +62,34 @@ const projects: PersonalProject[] = [
     featured: true,
   },
   // --- Supporting projects ---
+  {
+    name: 'Lighthouse Timeline',
+    description:
+      'Enter any public URL and watch an animated timeline of its Core Web Vitals history, with performance regressions flagged as incidents — built to make slowdowns visible at a glance and give developers something concrete to point at when explaining a regression to a stakeholder.',
+    tags: ['CrUX API', 'Core Web Vitals', 'D3', 'Performance'],
+    href: 'https://tomdeluca-lighthouse.netlify.app/',
+  },
+  {
+    name: 'Stack Trace Decoder',
+    description:
+      'Paste any browser console error or stack trace and get a plain-English explanation of what went wrong, where it happened, and exactly how to fix it — built to make debugging less opaque for developers at every experience level.',
+    tags: ['Claude API', 'Error Parsing', 'React', 'Developer Tooling'],
+    href: 'https://tomdeluca-decoder.netlify.app/',
+  },
+  {
+    name: 'Component Cost Calculator',
+    description:
+      'A build-vs-buy calculator for design system decisions — factoring in dev hours, QA time, cross-browser support, and the hidden cost of accessibility debt that most estimates quietly ignore.',
+    tags: ['React', 'Design Systems', 'Accessibility', 'Business Logic'],
+    href: 'https://tomdeluca-cost.netlify.app/',
+  },
+  {
+    name: 'Sitecore Migration Simulator',
+    description:
+      "An interactive step-by-step walkthrough of migrating a legacy Sitecore SXA page to a headless Next.js architecture — built to document every real trade-off decision in a format that's actually useful for teams planning their own migration.",
+    tags: ['Sitecore SXA', 'Next.js', 'Headless CMS', 'Enterprise'],
+    href: 'https://tomdeluca-sitecore.netlify.app/',
+  },
   {
     name: 'Component Playground',
     description:
