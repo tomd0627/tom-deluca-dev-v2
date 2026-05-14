@@ -20,8 +20,15 @@ pnpm-debug.log*
 .env
 .env.production
 
-# macOS-specific files
+# OS artifacts
 .DS_Store
+Thumbs.db
+
+# editor and AI tool config
+.cursor/
 
 # Claude Code local config
 .claude/
+
+# Netlify CLI runtime artifact
+deno.lock

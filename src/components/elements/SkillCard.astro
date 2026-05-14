@@ -10,12 +10,11 @@ export interface Props {
 const { name, cssClass, icon } = Astro.props;
 ---
 
-<div
+<article
   class=`skill-card-list__item skill-card-list__item--${cssClass} animate-slide`
-  role="article"
   aria-label={`${name} skill`}
 >
   <Icon name={icon} class="skill-card-list__item__icon" />
   <h3>{name}</h3>
   <slot />
-</div>
+</article>

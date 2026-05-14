@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --fix && stylelint \"src/**/*.{scss,css}\" --fix && prettier --write \"src/**/*.{js,ts,astro,scss,css}\"",
     "format": "prettier --write \"src/**/*.{js,ts,astro,scss,css}\"",
     "type-check": "astro check",
+    "validate:html": "html-validate \"dist/**/*.html\"",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "eslint": "^10.3.0",
     "eslint-plugin-astro": "^1.7.0",
     "gsap": "^3.15.0",
+    "html-validate": "^11.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.3",

@@ -9,7 +9,7 @@ A modern portfolio website built with Astro, featuring a responsive design, form
 - **JavaScript**: Vanilla ES6+ with animations and form validation
 - **Animation**: [GSAP 3.13.0](https://greensock.com/gsap) - Professional-grade animation library
 - **TypeScript**: 5.9.3 (strict mode enabled)
-- **Node.js**: 16+ (tested with v24.12.0)
+- **Node.js**: 22+ (tested with v24.12.0)
 
 ## 📋 Code Quality Tools
 
@@ -18,6 +18,7 @@ A modern portfolio website built with Astro, featuring a responsive design, form
 - **Style Linting**: [Stylelint 17.1.1](https://stylelint.io) with SCSS support
 - **Type Checking**: [Astro Check](https://docs.astro.build/en/guides/typescript/) - TypeScript validation for Astro files
 - **Git Hooks**: [Husky 9.0.11](https://typicode.github.io/husky) + [lint-staged 16.2.7](https://github.com/okonet/lint-staged) - Pre-commit code quality checks
+- **HTML Validation**: [html-validate](https://html-validate.org) - Post-build validation of compiled HTML output
 
 ## 🛠️ Installation
 
@@ -58,6 +59,7 @@ npm run lint         # Run ESLint + Stylelint checks
 npm run lint:fix     # Auto-fix linting issues
 npm run format       # Format all files with Prettier
 npm run type-check   # TypeScript type checking
+npm run validate:html  # Validate compiled HTML output (run after build)
 ```
 
 ### Pre-commit Hooks

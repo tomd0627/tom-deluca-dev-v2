@@ -16,6 +16,8 @@
         "ignorePseudoClasses": ["deep", "global"]
       }
     ],
+    "media-feature-range-notation": null,
+    "property-no-vendor-prefix": [true, { "ignoreProperties": ["-webkit-text-size-adjust"] }],
     "order/properties-alphabetical-order": true,
     "csstools/use-logical": [
       "always",

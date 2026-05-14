@@ -202,7 +202,7 @@ const secondary = projects.filter((p) => !p.featured);
       skill, not just list it.
     </p>
   </SectionIntro>
-  <ol class="personal-project-grid" role="list">
+  <ol class="personal-project-grid">
     {
       featured.map((project, i) => (
         <li class="personal-project-card animate-slide">
@@ -219,7 +219,7 @@ const secondary = projects.filter((p) => !p.featured);
             <h3 class="personal-project-card__name">{project.name}</h3>
             <p class="personal-project-card__description">{project.description}</p>
             <div class="personal-project-card__footer">
-              <div class="personal-project-card__tags" aria-label="Technologies">
+              <div class="personal-project-card__tags" role="group" aria-label="Technologies">
                 {project.tags.map((tag) => (
                   <span class="personal-project-card__tag">{tag}</span>
                 ))}
@@ -239,7 +239,7 @@ const secondary = projects.filter((p) => !p.featured);
       <span class="personal-projects-more__label--open">Show less</span>
       <span class="personal-projects-more__chevron" aria-hidden="true">▾</span>
     </summary>
-    <ol class="personal-projects-more__grid" role="list">
+    <ol class="personal-projects-more__grid">
       {
         secondary.map((project, i) => (
           <li class="personal-project-card animate-slide">
@@ -256,7 +256,7 @@ const secondary = projects.filter((p) => !p.featured);
               <h3 class="personal-project-card__name">{project.name}</h3>
               <p class="personal-project-card__description">{project.description}</p>
               <div class="personal-project-card__footer">
-                <div class="personal-project-card__tags" aria-label="Technologies">
+                <div class="personal-project-card__tags" role="group" aria-label="Technologies">
                   {project.tags.map((tag) => (
                     <span class="personal-project-card__tag">{tag}</span>
                   ))}
