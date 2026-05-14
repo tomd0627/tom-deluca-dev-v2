@@ -13,12 +13,13 @@ import TextField from '../form-fields/TextField.astro';
     method="POST"
     netlify-honeypot="name-bot"
     data-netlify="true"
+    novalidate
   >
     <input type="hidden" name="form-name" value="contact-form" />
     <TextBotField name="name-bot" label="Don't fill this out if you're human" />
     <TextField id="txtName" name="name" label="Your name" type="text" isRequired />
     <TextField id="txtEmail" name="email" label="Your email" type="email" isRequired />
-    <TextAreaField id="txtMessage" name="message" label="Your message" isRequired />
+    <TextAreaField id="txtMessage" name="message" label="Your message" isRequired minLength={10} />
     <ButtonField label="Let's chat" type="submit" />
   </form>
   <p id="contact-form-error" class="form-submit-error" hidden aria-live="polite">
@@ -35,12 +36,55 @@ import TextField from '../form-fields/TextField.astro';
 <script>
   const wrapper = document.getElementById('contact-form-wrapper');
   const successEl = document.getElementById('contact-form-success');
-  const errorEl = document.getElementById('contact-form-error');
+  const networkErrorEl = document.getElementById('contact-form-error');
   const form = wrapper?.querySelector<HTMLFormElement>('form');
+
+  const fields = (['txtName', 'txtEmail', 'txtMessage'] as const)
+    .map((id) => document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null)
+    .filter((el): el is HTMLInputElement | HTMLTextAreaElement => el !== null);
+
+  let submitted = false;
+
+  function errorMessage(field: HTMLInputElement | HTMLTextAreaElement): string {
+    const { validity, minLength } = field as HTMLInputElement & { minLength: number };
+    if (validity.valueMissing) return 'This field is required';
+    if (validity.typeMismatch) return 'Please enter a valid email address';
+    if (validity.tooShort) return `Must be at least ${minLength} characters`;
+    return '';
+  }
+
+  function applyValidation(field: HTMLInputElement | HTMLTextAreaElement) {
+    const message = errorMessage(field);
+    const errorSpan = document.getElementById(`${field.id}-error`);
+    field.setAttribute('aria-invalid', message ? 'true' : 'false');
+    if (errorSpan) errorSpan.textContent = message;
+  }
+
+  function validateAll(): boolean {
+    let valid = true;
+    for (const field of fields) {
+      applyValidation(field);
+      if (errorMessage(field)) valid = false;
+    }
+    return valid;
+  }
+
+  fields.forEach((field) => {
+    field.addEventListener('blur', () => {
+      if (submitted) applyValidation(field);
+    });
+    field.addEventListener('input', () => {
+      if (submitted) applyValidation(field);
+    });
+  });
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    errorEl?.setAttribute('hidden', '');
+    submitted = true;
+    networkErrorEl?.setAttribute('hidden', '');
+
+    if (!validateAll()) return;
+
     try {
       const res = await fetch('/', {
         method: 'POST',
@@ -51,7 +95,7 @@ import TextField from '../form-fields/TextField.astro';
       wrapper?.setAttribute('hidden', '');
       successEl?.removeAttribute('hidden');
     } catch {
-      errorEl?.removeAttribute('hidden');
+      networkErrorEl?.removeAttribute('hidden');
     }
   });
 </script>

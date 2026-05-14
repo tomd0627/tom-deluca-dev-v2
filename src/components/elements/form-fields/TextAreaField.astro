@@ -4,9 +4,10 @@ export interface Props {
   name: string;
   label: string;
   isRequired?: boolean;
+  minLength?: number;
 }
 
-const { id, name, label, isRequired } = Astro.props;
+const { id, name, label, isRequired, minLength } = Astro.props;
 
 let required = false;
 
@@ -21,7 +22,8 @@ if (isRequired === true) {
     name={name}
     placeholder=`${label}`
     class="form-input form-input--textarea"
-    required={required}></textarea>
+    required={required}
+    minlength={minLength}></textarea>
   <span class="form-line"></span>
   <span class="form-label">
     {label}

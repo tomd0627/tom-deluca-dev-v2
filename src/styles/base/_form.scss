@@ -136,7 +136,6 @@
   display: flex;
   flex-direction: column;
   gap: variables.$space-base;
-  padding-block: variables.$space-2xl;
 
   &__icon {
     color: var(--c-accent);
