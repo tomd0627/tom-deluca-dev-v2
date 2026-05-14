@@ -1,21 +1,57 @@
 ---
+import Icon from '../Icon.astro';
 import ButtonField from '../form-fields/ButtonField.astro';
 import TextAreaField from '../form-fields/TextAreaField.astro';
 import TextBotField from '../form-fields/TextBotField.astro';
 import TextField from '../form-fields/TextField.astro';
 ---
 
-<form
-  class="form"
-  name="contact-form"
-  method="POST"
-  netlify-honeypot="name-bot"
-  data-netlify="true"
-  action="/contact-form-success"
->
-  <TextBotField name="name-bot" label="Don't fill this out if you're human" />
-  <TextField id="txtName" name="name" label="Your name" type="text" isRequired />
-  <TextField id="txtEmail" name="email" label="Your email" type="email" isRequired />
-  <TextAreaField id="txtMessage" name="message" label="Your message" isRequired />
-  <ButtonField label="Let's chat" type="submit" />
-</form>
+<div id="contact-form-wrapper">
+  <form
+    class="form"
+    name="contact-form"
+    method="POST"
+    netlify-honeypot="name-bot"
+    data-netlify="true"
+  >
+    <input type="hidden" name="form-name" value="contact-form" />
+    <TextBotField name="name-bot" label="Don't fill this out if you're human" />
+    <TextField id="txtName" name="name" label="Your name" type="text" isRequired />
+    <TextField id="txtEmail" name="email" label="Your email" type="email" isRequired />
+    <TextAreaField id="txtMessage" name="message" label="Your message" isRequired />
+    <ButtonField label="Let's chat" type="submit" />
+  </form>
+  <p id="contact-form-error" class="form-submit-error" hidden aria-live="polite">
+    Something went wrong. Please try again.
+  </p>
+</div>
+
+<div id="contact-form-success" class="form-success" hidden aria-live="polite">
+  <span class="form-success__icon"><Icon name="check-circle" /></span>
+  <h3 class="form-success__heading">Message sent!</h3>
+  <p class="form-success__body">Thanks for reaching out — I'll get back to you soon.</p>
+</div>
+
+<script>
+  const wrapper = document.getElementById('contact-form-wrapper');
+  const successEl = document.getElementById('contact-form-success');
+  const errorEl = document.getElementById('contact-form-error');
+  const form = wrapper?.querySelector<HTMLFormElement>('form');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl?.setAttribute('hidden', '');
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form) as any).toString(),
+      });
+      if (!res.ok) throw new Error();
+      wrapper?.setAttribute('hidden', '');
+      successEl?.removeAttribute('hidden');
+    } catch {
+      errorEl?.removeAttribute('hidden');
+    }
+  });
+</script>
