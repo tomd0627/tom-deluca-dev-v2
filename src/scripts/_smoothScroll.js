@@ -114,5 +114,6 @@ export const scrollToHash = (hash, opts = {}) => {
     return Promise.resolve();
   }
   const instance = initializeSmoothScroll(opts);
-  return (instance && instance.destroy && instance, Promise.resolve());
+  instance?.destroy?.();
+  return Promise.resolve();
 };

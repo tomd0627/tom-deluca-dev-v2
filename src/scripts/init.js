@@ -11,8 +11,8 @@ export const initialize = () => {
   initializeSmoothScroll({ headerSelector: '.header' });
   initializeHeader();
   initializeFooter();
-  // Defer GSAP-dependent modules past initial paint to avoid forced reflow,
-  // reduce main-thread work, and keep GSAP out of the critical-path bundle.
+  // Defer animation modules past initial paint to avoid forced reflow
+  // and keep them out of the critical-path bundle.
   requestAnimationFrame(() => {
     import('./_animations').then(({ initializeAnimations }) => initializeAnimations());
     import('./_cursor').then(({ initializeCursor }) => initializeCursor());

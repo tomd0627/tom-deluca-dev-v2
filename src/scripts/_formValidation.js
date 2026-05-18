@@ -99,21 +99,6 @@ const setFieldError = (field, errorMessage, errorElement) => {
 };
 
 /**
- * Clear all errors from a form
- * @param {HTMLFormElement} form - The form element
- */
-export const clearFormErrors = (form) => {
-  const fields = form.querySelectorAll('input, textarea');
-  fields.forEach((field) => {
-    field.setAttribute('aria-invalid', 'false');
-    const errorElement = document.getElementById(`${field.id}-error`);
-    if (errorElement) {
-      errorElement.textContent = '';
-    }
-  });
-};
-
-/**
  * Validate entire form
  * @param {HTMLFormElement} form - The form element to validate
  * @returns {boolean} - Whether the entire form is valid

@@ -245,11 +245,10 @@ img {
   border-radius: 50%;
   inline-size: 0.875rem;
   mix-blend-mode: difference;
-  opacity: 0.6;
+  opacity: 0;
   pointer-events: none;
   position: fixed;
-  transform: translate(-50%, -50%);
-  transition: transform var(--s-fast);
+  transition: opacity 0.2s;
   z-index: var(--z-100);
 
   @media (hover: none) {
