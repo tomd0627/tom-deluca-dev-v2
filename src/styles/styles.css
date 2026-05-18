@@ -518,7 +518,7 @@ img {
 }
 
 .form-required {
-  color: var(--c-error);
+  color: inherit;
 }
 
 .form-error {
