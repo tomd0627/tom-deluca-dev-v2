@@ -5,14 +5,4 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always',
   },
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: "modern-compiler",
-          quietDeps: true,
-        },
-      },
-    },
-  },
 });

@@ -1,21 +1,11 @@
 {
-  "extends": "stylelint-config-standard-scss",
+  "extends": "stylelint-config-standard",
   "plugins": ["stylelint-order", "stylelint-use-logical"],
   "rules": {
-    "scss/at-extend-no-missing-placeholder": null,
-    "scss/no-global-function-names": null,
     "selector-class-pattern": null,
     "custom-property-pattern": null,
     "value-keyword-case": null,
     "function-name-case": "lower",
-    "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true,
-    "selector-pseudo-class-no-unknown": [
-      true,
-      {
-        "ignorePseudoClasses": ["deep", "global"]
-      }
-    ],
     "media-feature-range-notation": null,
     "property-no-vendor-prefix": [true, { "ignoreProperties": ["-webkit-text-size-adjust"] }],
     "order/properties-alphabetical-order": true,

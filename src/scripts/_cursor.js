@@ -1,22 +1,19 @@
-import { gsap } from 'gsap';
-
 const STORAGE_KEY = 'cursor-follower';
+const LERP_POS = 0.15;
+const LERP_SCALE = 0.2;
 
 /**
  * Custom cursor follower — desktop only (disabled on touch devices).
- * Uses GSAP quickTo for smooth lag effect.
- * The cursor element (.cursor-follower) is created here and styled in _base.scss.
+ * Replaces GSAP quickTo with a rAF lerp loop; opacity fades via CSS transition.
+ * The cursor element (.cursor-follower) is created here and styled in styles.css.
  * Toggleable via #cursor-toggle button; preference persisted in localStorage.
  */
 export const initializeCursor = () => {
-  // Skip on touch devices
   if (window.matchMedia('(hover: none)').matches) {
     return;
   }
 
   const toggleBtn = document.getElementById('cursor-toggle');
-
-  // Default to disabled unless explicitly enabled
   let enabled = localStorage.getItem(STORAGE_KEY) === 'on';
 
   const cursor = document.createElement('div');
@@ -24,32 +21,44 @@ export const initializeCursor = () => {
   cursor.setAttribute('aria-hidden', 'true');
   document.body.appendChild(cursor);
 
+  // Lerp state — position and scale interpolated every frame
+  let tx = 0,
+    ty = 0;
+  let cx = 0,
+    cy = 0;
+  let ts = 1,
+    cs = 1;
+  let initialized = false;
+
+  const tick = () => {
+    cx += (tx - cx) * LERP_POS;
+    cy += (ty - cy) * LERP_POS;
+    cs += (ts - cs) * LERP_SCALE;
+    // calc(Xpx - 50%) centers the dot on the cursor position
+    cursor.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%)) scale(${cs})`;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
   const applyState = () => {
-    gsap.to(cursor, {
-      opacity: enabled ? 0.6 : 0,
-      duration: 0.2,
-      onComplete: () => {
-        cursor.style.pointerEvents = enabled ? '' : 'none';
-      },
-    });
+    cursor.style.opacity = enabled ? '0.6' : '0';
+    cursor.style.pointerEvents = enabled ? '' : 'none';
     if (toggleBtn) {
       toggleBtn.setAttribute('aria-pressed', String(enabled));
     }
   };
 
-  // GSAP quickTo gives the cursor a smooth lag behind the pointer
-  const xTo = gsap.quickTo(cursor, 'x', { duration: 0.35, ease: 'power3.out' });
-  const yTo = gsap.quickTo(cursor, 'y', { duration: 0.35, ease: 'power3.out' });
-
   window.addEventListener('mousemove', (e) => {
-    if (!enabled) {
-      return;
+    tx = e.clientX;
+    ty = e.clientY;
+    // Snap to mouse on first move to avoid crawling in from (0, 0)
+    if (!initialized) {
+      cx = tx;
+      cy = ty;
+      initialized = true;
     }
-    xTo(e.clientX);
-    yTo(e.clientY);
   });
 
-  // Scale up on interactive elements
   const interactiveSelectors =
     'a, button, .project-bento__cell, .value-card, .skill-card-list__item';
 
@@ -58,31 +67,31 @@ export const initializeCursor = () => {
       if (!enabled) {
         return;
       }
-      gsap.to(cursor, { scale: 3, opacity: 0.3, duration: 0.25, ease: 'power2.out' });
+      ts = 3;
+      cursor.style.opacity = '0.3';
     });
     el.addEventListener('mouseleave', () => {
       if (!enabled) {
         return;
       }
-      gsap.to(cursor, { scale: 1, opacity: 0.6, duration: 0.25, ease: 'power2.out' });
+      ts = 1;
+      cursor.style.opacity = '0.6';
     });
   });
 
-  // Hide cursor when it leaves the window
   document.addEventListener('mouseleave', () => {
     if (!enabled) {
       return;
     }
-    gsap.to(cursor, { opacity: 0, duration: 0.2 });
+    cursor.style.opacity = '0';
   });
   document.addEventListener('mouseenter', () => {
     if (!enabled) {
       return;
     }
-    gsap.to(cursor, { opacity: 0.6, duration: 0.2 });
+    cursor.style.opacity = '0.6';
   });
 
-  // Toggle button
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
       enabled = !enabled;
