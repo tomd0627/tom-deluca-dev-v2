@@ -1,0 +1,203 @@
+.personal-project-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin-block-start: var(--space-xl);
+  padding: 0;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.personal-projects-more {
+  margin-block-start: 1.5rem;
+}
+
+.personal-projects-more__summary {
+  align-items: center;
+  border: 1px solid var(--c-violet);
+  border-radius: 2rem;
+  color: var(--c-violet);
+  cursor: pointer;
+  display: flex;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  gap: 0.375rem;
+  inline-size: 100%;
+  justify-content: center;
+  letter-spacing: 0.02em;
+  list-style: none;
+  padding-block: 0.6rem;
+  padding-inline: 1.5rem;
+  transition:
+    background var(--s-base),
+    color var(--s-base);
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--c-violet);
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-violet);
+    outline-offset: 3px;
+  }
+}
+
+.personal-projects-more__label--open {
+  display: none;
+}
+
+.personal-projects-more[open] .personal-projects-more__label--closed {
+  display: none;
+}
+
+.personal-projects-more[open] .personal-projects-more__label--open {
+  display: inline;
+}
+
+.personal-projects-more__chevron {
+  display: inline-block;
+  transition: transform var(--s-base);
+}
+
+.personal-projects-more[open] .personal-projects-more__chevron {
+  transform: rotate(180deg);
+}
+
+.personal-projects-more__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  padding-block-start: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.personal-project-card {
+  block-size: 100%;
+}
+
+.personal-project-card__link {
+  background: var(--c-bg-secondary);
+  block-size: 100%;
+  border: 1px solid var(--c-border);
+  border-block-start: 3px solid var(--c-violet);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-block-size: 220px;
+  padding: var(--space-lg);
+  text-decoration: none;
+  transition:
+    box-shadow var(--s-base),
+    transform var(--s-base);
+
+  &:focus-visible,
+  &:hover {
+    box-shadow: 0 8px 24px rgb(167 139 250 / 15%);
+    outline-offset: 3px;
+    transform: translateY(-4px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-violet);
+  }
+}
+
+.personal-project-card__cta {
+  border: 1px solid var(--c-violet);
+  border-radius: 2rem;
+  color: var(--c-violet);
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+  padding-block: 0.3rem;
+  padding-inline: 0.875rem;
+  transition:
+    background var(--s-base),
+    border-color var(--s-base),
+    color var(--s-base);
+  white-space: nowrap;
+}
+
+.personal-project-card__link:focus-visible .personal-project-card__cta,
+.personal-project-card__link:hover .personal-project-card__cta {
+  background: var(--c-violet);
+  border-color: var(--c-violet);
+  color: #fff;
+}
+
+.personal-project-card__number {
+  color: var(--c-violet);
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.personal-project-card__name {
+  color: var(--c-text-bright);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+  margin: 0;
+}
+
+.personal-project-card__description {
+  color: var(--c-text-base);
+  flex: 1;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+}
+
+.personal-project-card__footer {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-block-start: auto;
+}
+
+.personal-project-card__tags {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.4rem;
+}
+
+.personal-project-card__tag {
+  background: rgb(167 139 250 / 12%);
+  border: 1px solid rgb(167 139 250 / 30%);
+  border-radius: 0.25rem;
+  color: var(--c-violet);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  padding-block: 0.2rem;
+  padding-inline: 0.5rem;
+}

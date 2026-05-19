@@ -1,0 +1,307 @@
+.header {
+  backdrop-filter: blur(12px);
+  background: rgb(11 22 34 / 70%);
+  border-block-end: 1px solid var(--c-border);
+  color: var(--c-text-base);
+  inset-block-start: 0;
+  inset-inline: 0;
+  padding-block: 1.25rem;
+  padding-inline: 0;
+  position: fixed;
+  transition:
+    background var(--s-base),
+    border-color var(--s-base),
+    transform var(--s-base);
+  z-index: var(--z-10);
+
+  & a {
+    color: var(--c-text-base);
+
+    &:hover {
+      color: var(--c-accent);
+    }
+  }
+}
+
+[data-theme='light'] .header {
+  background: rgb(246 248 252 / 85%);
+}
+
+.header__inner {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  justify-content: space-between;
+  min-block-size: 1.875rem;
+  position: relative;
+
+  @media (min-width: 1024px) {
+    min-block-size: 2.25rem;
+  }
+}
+
+.header__skip-to-content {
+  --btn-bg: #5ef0c8;
+  --btn-fg: #0b1622;
+
+  align-items: center;
+  background: var(--btn-bg);
+  border: 2px solid var(--btn-fg);
+  border-radius: 50vw;
+  color: var(--btn-fg);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.2rem;
+  font-weight: var(--fw-bold);
+  gap: 1rem;
+  justify-content: center;
+  min-inline-size: 12rem;
+  padding-block: 0.8rem;
+  padding-inline: 0.8rem;
+  position: absolute;
+  transform: translateY(-150%);
+  transition:
+    background var(--s-base),
+    border-color var(--s-base),
+    color var(--s-base),
+    transform var(--s-base);
+
+  &:focus-visible,
+  &:hover {
+    background: var(--btn-fg);
+    border-color: var(--btn-bg);
+    color: var(--btn-bg);
+    outline: none;
+  }
+
+  &:focus-visible {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 767px) {
+    inline-size: 100%;
+  }
+}
+
+.header__logo {
+  color: var(--c-accent);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+
+  &:hover {
+    color: var(--c-accent-hover);
+  }
+
+  @media (min-width: 1024px) {
+    font-size: var(--fs-2xl);
+  }
+}
+
+.header__controls {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.75rem;
+}
+
+.header__menu-toggle {
+  background: none;
+  block-size: 1.875rem;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 6px;
+  inline-size: 2.5rem;
+  justify-content: center;
+  padding-block: 0;
+  padding-inline: 0;
+  position: relative;
+
+  .bar {
+    background: var(--c-text-base);
+    block-size: 2px;
+    border-radius: 2px;
+    display: block;
+    inline-size: 100%;
+    opacity: 1;
+    transform: translate(0) rotate(0);
+    transition:
+      opacity var(--s-base),
+      transform var(--s-base);
+  }
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.show-nav .header__menu-toggle .bar--top {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.show-nav .header__menu-toggle .bar--mid {
+  opacity: 0;
+}
+
+.show-nav .header__menu-toggle .bar--bot {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.header__nav {
+  background: var(--c-bg-secondary);
+  border-block-end: 1px solid var(--c-border);
+  inset-block-start: calc(100% + 1.25rem);
+  inset-inline: 0;
+  margin-block: 0;
+  margin-inline: -1.5rem;
+  max-block-size: 0;
+  overflow: hidden;
+  position: absolute;
+  transition: max-block-size var(--s-base);
+
+  & ul {
+    display: flex;
+    flex-flow: column nowrap;
+
+    @media (min-width: 1024px) {
+      flex-flow: row wrap;
+      gap: 0 2.5rem;
+    }
+
+    & li {
+      & a {
+        color: var(--c-text-muted);
+        display: block;
+        font-size: var(--fs-base);
+        padding-block: 1rem;
+        padding-inline: 1.5rem;
+        position: relative;
+        transition:
+          background var(--s-fast),
+          color var(--s-fast);
+
+        &:focus-visible,
+        &:hover,
+        &.active {
+          color: var(--c-accent);
+        }
+
+        @media (min-width: 1024px) {
+          padding-block: 0.5rem;
+          padding-inline: 0;
+
+          &::after {
+            background: var(--c-accent);
+            block-size: 1px;
+            border-radius: 1px;
+            content: '';
+            display: block;
+            inline-size: 0;
+            inset-block-end: -2px;
+            inset-inline-start: 0;
+            position: absolute;
+            transition: inline-size var(--s-base);
+          }
+
+          &:focus-visible,
+          &:hover,
+          &.active {
+            &::after {
+              inline-size: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    background: none;
+    border: none;
+    margin-block: 0;
+    margin-inline: 0;
+    max-block-size: none;
+    overflow: visible;
+    position: static;
+  }
+}
+
+.show-nav .header__nav {
+  max-block-size: 100dvh;
+}
+
+/* Shared FAB base */
+
+.cursor-toggle-fab,
+.theme-toggle-fab {
+  align-items: center;
+  background: var(--c-bg-secondary);
+  block-size: 2.75rem;
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  display: flex;
+  inline-size: 2.75rem;
+  inset-inline-end: 2rem;
+  justify-content: center;
+  padding: 0;
+  position: fixed;
+  transition:
+    background var(--s-fast),
+    border-color var(--s-fast),
+    box-shadow var(--s-fast),
+    color var(--s-fast),
+    transform var(--s-fast);
+  z-index: var(--z-10);
+
+  & svg {
+    block-size: 1.125rem;
+    inline-size: 1.125rem;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--c-bg-tertiary);
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 4px rgb(94 240 200 / 12%);
+    color: var(--c-accent);
+    transform: scale(1.08);
+  }
+}
+
+.cursor-toggle-fab {
+  inset-block-end: 6rem;
+
+  &[aria-pressed='false'] {
+    opacity: 0.4;
+  }
+
+  @media (hover: none) {
+    display: none;
+  }
+}
+
+.theme-toggle-fab {
+  inset-block-end: 2rem;
+
+  .icon-sun {
+    display: none;
+  }
+
+  .icon-moon {
+    display: block;
+  }
+}
+
+[data-theme='light'] .theme-toggle-fab .icon-sun {
+  display: block;
+}
+
+[data-theme='light'] .theme-toggle-fab .icon-moon {
+  display: none;
+}
