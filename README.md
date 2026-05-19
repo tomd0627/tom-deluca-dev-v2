@@ -84,28 +84,37 @@ src/
 ├── layouts/             # Page layouts (Layout.astro, LayoutFullHeight.astro)
 ├── pages/               # Route pages (auto-routed by filename)
 ├── scripts/             # JavaScript modules
-│   ├── formValidation.js   # Form validation logic
 │   ├── _animations.js      # Scroll and reveal animations (WAAPI + IntersectionObserver)
-│   ├── _header.js          # Header interactions
+│   ├── _cursor.js          # Custom cursor follower (rAF lerp)
 │   ├── _footer.js          # Footer interactions
-│   ├── _projectCard.js     # Project card flip animations
+│   ├── _formValidation.js  # Form validation logic
+│   ├── _header.js          # Header interactions (nav toggle, active section)
 │   ├── _smoothScroll.js    # Smooth scroll for anchor links
-│   ├── _utils.js           # Utility functions
+│   ├── _theme-toggle.js    # Dark/light theme toggle with localStorage persistence
 │   ├── init.js             # Main initialization entry point
 │   └── index.js            # Script bundler entry point
 ├── styles/              # Stylesheets
-│   └── styles.css       # Single stylesheet (custom properties, base, layout, components)
+│   ├── styles.css       # Entry point — imports all partials (bundled by Vite)
+│   ├── _settings.css    # Custom properties and @font-face
+│   ├── _base.css        # Resets, global elements, utility classes
+│   ├── _buttons.css     # Button variants
+│   ├── _forms.css       # Form inputs and validation states
+│   ├── _keyframes.css   # @keyframes animations
+│   ├── _sections.css    # Section layouts and hero
+│   ├── _header.css      # Header and FABs
+│   ├── _footer.css      # Footer
+│   └── _*.css           # One file per component (experience, projects, stats, etc.)
 ├── assets/              # Images, fonts, media
 └── env.d.ts            # TypeScript environment declarations
 ```
 
 ## 🎨 Styling Architecture
 
-The project uses a single native CSS file (`src/styles/styles.css`) with:
+Styles are split into focused partials under `src/styles/`, imported via `styles.css` and bundled by Vite at build time:
 
-- **Custom Properties**: Color palette, typography, spacing, and breakpoint tokens on `:root`
-- **No preprocessor**: All SCSS has been migrated to native CSS — no build-time dependency
-- **Responsive Design**: Media queries inline per component, mobile-first where practical
+- **Custom Properties**: Color palette, typography, spacing, and z-index tokens on `:root` in `_settings.css`
+- **No preprocessor**: Native CSS throughout — no build-time dependency
+- **One file per concern**: Settings, base, buttons, forms, keyframes, sections, header, footer, and one file per component
 - **CSS Grid & Flexbox**: Modern layout techniques throughout
 
 ## ✅ Form Validation
@@ -122,7 +131,7 @@ The project includes modern, accessible form validation:
 - Focus management (focuses first invalid field on submit)
 - WCAG accessibility guidelines (ARIA labels, roles, alerts)
 
-**File**: `src/scripts/formValidation.js`
+**File**: `src/scripts/_formValidation.js`
 
 ## 💾 Format-on-Save
 
@@ -131,7 +140,7 @@ VS Code is configured for automatic formatting on save:
 **Formatters by file type:**
 
 - `.astro` → Astro VS Code extension
-- `.js`, `.ts`, `.scss`, `.css`, `.html` → Prettier
+- `.js`, `.ts`, `.css`, `.html` → Prettier
 
 **Required VS Code Extensions:**
 
