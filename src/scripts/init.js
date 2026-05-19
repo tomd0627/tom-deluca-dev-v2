@@ -2,11 +2,11 @@ import { initializeFooter } from './_footer';
 import { initializeHeader } from './_header';
 import { initializeSmoothScroll } from './_smoothScroll';
 import { initializeThemeToggle } from './_theme-toggle';
-import { initializeUtills } from './_utils';
+import { initializeUtils } from './_utils';
 
 export const initialize = () => {
   initializeThemeToggle();
-  initializeUtills();
+  initializeUtils();
   // Global smooth-scroll for same-page anchor links
   initializeSmoothScroll({ headerSelector: '.header' });
   initializeHeader();

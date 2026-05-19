@@ -1,4 +1,4 @@
-export const initializeUtills = () => {
+export const initializeUtils = () => {
   const body = document.body;
 
   // Toggle body class on scroll

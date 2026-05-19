@@ -37,51 +37,47 @@ export const initializeHeader = () => {
       return;
     }
 
-    if (menuLinks !== null) {
-      // Close mobile nav on link click. Smooth scrolling handled globally by _smoothScroll.js
-      menuLinks.forEach((link) => {
-        link.addEventListener('click', () => {
+    // Close mobile nav on link click. Smooth scrolling handled globally by _smoothScroll.js
+    menuLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closeHeaderNav();
+      });
+      // Close menu on Escape while focused on a nav link
+      link.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          e.preventDefault();
           closeHeaderNav();
-        });
-        // Close menu on Escape while focused on a nav link
-        link.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            e.preventDefault();
-            closeHeaderNav();
-            menuToggle.focus();
-          }
-        });
+          menuToggle.focus();
+        }
       });
+    });
 
-      // Highlight 'active' section on scroll (mobile and desktop)
-      const options = {
-        threshold: 0.1,
-      };
+    // Highlight 'active' section on scroll (mobile and desktop)
+    const options = {
+      threshold: 0.1,
+    };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const navIdMap = { 'personal-projects': 'projects', stats: 'about' };
-            const navId = navIdMap[entry.target.id] ?? entry.target.id;
-            const selector = `.header__nav__anchor[href="#${navId}"]`;
-            const activeLink = document.querySelector(selector);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const navIdMap = { 'personal-projects': 'projects', stats: 'about' };
+          const navId = navIdMap[entry.target.id] ?? entry.target.id;
+          const selector = `.header__nav__anchor[href="#${navId}"]`;
+          const activeLink = document.querySelector(selector);
 
-            menuLinks.forEach((link) => {
-              link.classList.remove('active');
-            });
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
+          menuLinks.forEach((link) => {
+            link.classList.remove('active');
+          });
+          if (activeLink) {
+            activeLink.classList.add('active');
           }
-        });
-      }, options);
-
-      sections.forEach((section) => {
-        observer.observe(section);
+        }
       });
-    } else {
-      return;
-    }
+    }, options);
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
 
     body.addEventListener('click', () => {
       closeHeaderNav();
