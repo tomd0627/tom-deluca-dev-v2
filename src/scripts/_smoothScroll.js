@@ -103,17 +103,3 @@ export const initializeSmoothScroll = ({
     },
   };
 };
-
-export const scrollToHash = (hash, opts = {}) => {
-  if (!hash) {
-    return Promise.resolve();
-  }
-  const id = hash.startsWith('#') ? hash.slice(1) : hash;
-  const target = document.getElementById(id);
-  if (!target) {
-    return Promise.resolve();
-  }
-  const instance = initializeSmoothScroll(opts);
-  instance?.destroy?.();
-  return Promise.resolve();
-};

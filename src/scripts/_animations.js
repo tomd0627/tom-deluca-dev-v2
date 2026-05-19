@@ -4,18 +4,18 @@ const EASE_P1_IN = 'cubic-bezier(0.42, 0, 1, 1)';
 
 const activeAnims = new WeakMap();
 
-function animateEl(el, keyframes, options) {
+function animateEl(el, keyframes, options, kind = 'enter') {
   const prev = activeAnims.get(el);
   if (prev) {
     try {
-      prev.commitStyles();
+      prev.anim.commitStyles();
     } catch {
       // commitStyles/cancel may throw if the animation has already been removed
     }
-    prev.cancel();
+    prev.anim.cancel();
   }
   const anim = el.animate(keyframes, { fill: 'both', ...options });
-  activeAnims.set(el, anim);
+  activeAnims.set(el, { anim, kind });
   return anim;
 }
 
@@ -171,7 +171,8 @@ const slideAnimation = (elements, staggerMs = 100) => {
           { opacity: 0, transform: 'translateY(40px)' },
           { opacity: 1, transform: 'translateY(0)' },
         ],
-        { duration: 650, delay: i * staggerMs, easing: EASE_P2_OUT }
+        { duration: 650, delay: i * staggerMs, easing: EASE_P2_OUT },
+        'enter'
       );
     });
     pending.enterBack.forEach((el, i) => {
@@ -181,7 +182,8 @@ const slideAnimation = (elements, staggerMs = 100) => {
           { opacity: 0, transform: 'translateY(40px)' },
           { opacity: 1, transform: 'translateY(0)' },
         ],
-        { duration: 500, delay: i * staggerMs, easing: EASE_P2_OUT }
+        { duration: 500, delay: i * staggerMs, easing: EASE_P2_OUT },
+        'enterBack'
       );
     });
     pending.leave.forEach((el, i) => {
@@ -191,7 +193,8 @@ const slideAnimation = (elements, staggerMs = 100) => {
           { opacity: 1, transform: 'translateY(0)' },
           { opacity: 0, transform: 'translateY(-20px)' },
         ],
-        { duration: 400, delay: i * staggerMs, easing: EASE_P1_IN }
+        { duration: 400, delay: i * staggerMs, easing: EASE_P1_IN },
+        'leave'
       );
     });
     pending.leaveBack.forEach((el, i) => {
@@ -201,7 +204,8 @@ const slideAnimation = (elements, staggerMs = 100) => {
           { opacity: 1, transform: 'translateY(0)' },
           { opacity: 0, transform: 'translateY(40px)' },
         ],
-        { duration: 400, delay: i * staggerMs, easing: EASE_P1_IN }
+        { duration: 400, delay: i * staggerMs, easing: EASE_P1_IN },
+        'leaveBack'
       );
     });
     pending = { enter: [], enterBack: [], leave: [], leaveBack: [] };
@@ -219,7 +223,14 @@ const slideAnimation = (elements, staggerMs = 100) => {
         // Ignore re-entry events fired while an enter animation is mid-flight.
         // The element's own translateY movement can cross the threshold a second
         // time during the slide, which would otherwise restart the animation.
-        if (entry.isIntersecting && activeAnims.get(entry.target)?.playState === 'running') {
+        // Leave animations running during re-entry are intentionally NOT suppressed —
+        // animateEl will cancel the leave and start the enter instead.
+        const active = activeAnims.get(entry.target);
+        if (
+          entry.isIntersecting &&
+          (active?.kind === 'enter' || active?.kind === 'enterBack') &&
+          active?.anim?.playState === 'running'
+        ) {
           return;
         }
         (entry.isIntersecting
