@@ -83,10 +83,6 @@ const ogImage = `${siteUrl}/og-image.png`;
       }
     </script>
 
-    <!--
-      Theme initialization: runs before body paint to prevent flash of wrong theme.
-      Reads localStorage; falls back to OS preference.
-    -->
     <script is:inline>
       (function () {
         var stored = localStorage.getItem('theme');
